@@ -15,4 +15,4 @@ export default defineConfig({
   schema: {
     types: schemas,
   },
-})
+}) //github commit
