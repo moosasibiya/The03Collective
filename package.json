@@ -1,0 +1,46 @@
+{
+  "name": "the03collective",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset --force"
+  },
+  "dependencies": {
+    "@portabletext/react": "^6.0.3",
+    "@prisma/client": "^6.19.2",
+    "@sanity/client": "^7.18.0",
+    "@sanity/image-url": "^2.0.3",
+    "@sanity/vision": "^5.17.1",
+    "@sentry/nextjs": "^10.44.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "next": "16.1.7",
+    "next-sanity": "^12.1.2",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "resend": "^6.9.4",
+    "sanity": "^5.17.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.7",
+    "prettier": "^3.8.1",
+    "prisma": "^6.19.2",
+    "typescript": "^5"
+  }
+}
