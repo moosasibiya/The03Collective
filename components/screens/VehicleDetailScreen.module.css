@@ -1,0 +1,80 @@
+.breadcrumbBar {
+  margin-top: 76px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumb a,
+.current {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.breadcrumb a {
+  color: var(--text-ghost);
+}
+
+.breadcrumb span {
+  color: var(--text-ghost);
+}
+
+.current {
+  color: var(--text-muted);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.8fr);
+  gap: 40px;
+  padding-top: 44px;
+}
+
+.content {
+  min-width: 0;
+}
+
+.label {
+  margin-bottom: 14px;
+}
+
+.title {
+  color: var(--text);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 0.98;
+}
+
+.subtitle {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  margin-bottom: 18px;
+  color: var(--text);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+@media (max-width: 980px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}

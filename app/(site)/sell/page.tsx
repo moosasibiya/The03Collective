@@ -1,3 +1,5 @@
+import SellScreen from '@/components/screens/SellScreen'
+
 export default function SellPage() {
-  return <div style={{ padding: 40 }}>Sell your car page placeholder</div>
+  return <SellScreen />
 }

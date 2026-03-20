@@ -1,0 +1,29 @@
+.section {
+  padding: 96px 0;
+  background:
+    linear-gradient(135deg, var(--light-bg) 0%, var(--light-bg-3) 55%, var(--light-bg-2) 100%);
+  color: var(--light-text);
+}
+
+.inner {
+  text-align: center;
+}
+
+.title {
+  color: var(--light-text);
+}
+
+.subtitle {
+  max-width: 520px;
+  margin: 18px auto 0;
+  color: var(--light-text-muted);
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}

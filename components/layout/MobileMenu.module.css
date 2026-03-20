@@ -1,0 +1,97 @@
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  background: rgba(10, 10, 11, 0.98);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  color: var(--text-muted);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.brand {
+  position: absolute;
+  top: 28px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.brandNumeral {
+  padding-right: 11px;
+  color: var(--accent);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.brandDivider {
+  width: 1px;
+  height: 22px;
+  margin-right: 11px;
+  background: linear-gradient(to bottom, transparent, rgba(201, 169, 110, 0.45), transparent);
+}
+
+.brandStack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brandThe {
+  color: var(--text-ghost);
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.brandWord {
+  color: var(--text-muted);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.link {
+  color: var(--text);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 36px;
+  font-weight: 300;
+  transition: color var(--transition);
+}
+
+.active,
+.link:hover {
+  color: var(--accent);
+}

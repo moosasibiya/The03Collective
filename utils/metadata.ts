@@ -10,8 +10,7 @@ export function buildMetadata(overrides: Partial<Metadata> = {}): Metadata {
       template: '%s - The 03 Collective',
     },
     description:
-      'Premium vehicles. Curated selection. Personal service. ' +
-      'Based in Johannesburg, South Africa.',
+      'Premium vehicles. Curated selection. Personal service. Based in Johannesburg, South Africa.',
     keywords: [
       'premium cars for sale South Africa',
       'luxury cars Johannesburg',
@@ -62,7 +61,7 @@ export function buildVehicleMetadata(vehicle: {
     `R ${vehicle.price.toLocaleString('en-ZA')}`,
   ]
     .filter(Boolean)
-    .join(' · ')
+    .join(' | ')
 
   return buildMetadata({
     title,

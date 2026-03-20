@@ -37,10 +37,12 @@ export interface Vehicle {
   mainImage?: SanityImage
   images?: SanityImage[]
   description?: unknown[]
+  descriptionHtml?: string
   features?: string[]
   specs?: VehicleSpecs
   conditionNotes?: string
   whatsappMessage?: string
+  tags?: string[]
 }
 
 export interface Testimonial {
