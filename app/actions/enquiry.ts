@@ -1,33 +1,38 @@
 'use server'
 
-import { headers } from 'next/headers'
 import { prisma } from '@/lib/prisma'
+import { rateLimit } from '@/lib/rateLimit'
 import { resend } from '@/lib/resend'
 import { EnquirySchema } from '@/lib/validations'
+import { headers } from 'next/headers'
 
-export type ActionResult = { success: true } | { success: false; error: string }
+export type ActionResult =
+  | { success: true }
+  | { success: false; error: string }
 
 export async function submitEnquiry(
-  _prevState: ActionResult | null,
+  _prev: ActionResult | null,
   formData: FormData
 ): Promise<ActionResult> {
-  const raw = Object.fromEntries(formData.entries())
+  const raw = Object.fromEntries(formData)
   const parsed = EnquirySchema.safeParse(raw)
 
   if (!parsed.success) {
-    return {
-      success: false,
-      error: parsed.error.issues[0]?.message ?? 'Invalid form submission',
-    }
+    return { success: false, error: parsed.error.issues[0]?.message ?? 'Invalid form submission' }
   }
 
-  const requestHeaders = await headers()
-  const forwardedFor = requestHeaders.get('x-forwarded-for')
-  const userAgent = requestHeaders.get('user-agent')
-
-  const ipAddress = forwardedFor?.split(',')[0]?.trim() || null
-
   const { vehicleSlug, vehicleName, name, phone, email, message } = parsed.data
+  const headersList = await headers()
+  const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+  const userAgent = headersList.get('user-agent')
+
+  const { allowed } = rateLimit(ip)
+  if (!allowed) {
+    return {
+      success: false,
+      error: 'Too many submissions. Please wait a moment and try again.',
+    }
+  }
 
   try {
     await prisma.vehicleEnquiry.create({
@@ -38,7 +43,7 @@ export async function submitEnquiry(
         phone,
         email: email || null,
         message: message || null,
-        ipAddress,
+        ipAddress: ip,
         userAgent,
       },
     })
@@ -46,15 +51,41 @@ export async function submitEnquiry(
     await resend.emails.send({
       from: 'The 03 Collective <hello@the03collective.co.za>',
       to: process.env.BUSINESS_EMAIL!,
-      subject: `New Enquiry — ${vehicleName}`,
+      replyTo: email || undefined,
+      subject: `New Enquiry - ${vehicleName}`,
       html: `
-        <h2>New Vehicle Enquiry</h2>
-        <p><strong>Vehicle:</strong> ${vehicleName}</p>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email || '—'}</p>
-        <p><strong>Message:</strong> ${message || '—'}</p>
-        <p><a href="https://www.the03collective.co.za/inventory/${vehicleSlug}">View listing</a></p>
+        <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:40px 24px;color:#1C1A17">
+          <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#A09890;margin-bottom:8px">The 03 Collective</p>
+          <h1 style="font-size:28px;font-weight:300;margin:0 0 32px">New Vehicle Enquiry</h1>
+          <table style="width:100%;border-collapse:collapse">
+            <tr style="border-bottom:1px solid #EDE8DF">
+              <td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890;width:120px">Vehicle</td>
+              <td style="padding:12px 0;font-size:15px;color:#1C1A17">${vehicleName}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #EDE8DF">
+              <td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Name</td>
+              <td style="padding:12px 0;font-size:15px;color:#1C1A17">${name}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #EDE8DF">
+              <td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Phone</td>
+              <td style="padding:12px 0;font-size:15px;color:#1C1A17">${phone}</td>
+            </tr>
+            <tr style="border-bottom:1px solid #EDE8DF">
+              <td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Email</td>
+              <td style="padding:12px 0;font-size:15px;color:#1C1A17">${email || '-'}</td>
+            </tr>
+            <tr>
+              <td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Message</td>
+              <td style="padding:12px 0;font-size:15px;color:#1C1A17">${message || '-'}</td>
+            </tr>
+          </table>
+          <div style="margin-top:32px;padding-top:24px;border-top:1px solid #EDE8DF">
+            <a href="${process.env.NEXT_PUBLIC_SITE_URL}/inventory/${vehicleSlug}"
+               style="display:inline-block;padding:12px 24px;background:#C9A96E;color:#0A0A0B;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none">
+              View Listing ->
+            </a>
+          </div>
+        </div>
       `,
     })
 
@@ -62,22 +93,33 @@ export async function submitEnquiry(
       await resend.emails.send({
         from: 'The 03 Collective <hello@the03collective.co.za>',
         to: email,
-        subject: `Enquiry Received — ${vehicleName}`,
+        subject: `Enquiry Received - ${vehicleName}`,
         html: `
-          <p>Hi ${name},</p>
-          <p>Thank you for your interest in the <strong>${vehicleName}</strong>.</p>
-          <p>We’ve received your enquiry and will be in touch shortly.</p>
-          <p>— The 03 Collective</p>
+          <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:40px 24px;color:#1C1A17">
+            <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#A09890;margin-bottom:8px">The 03 Collective</p>
+            <h1 style="font-size:28px;font-weight:300;margin:0 0 16px">We've received your enquiry.</h1>
+            <p style="font-size:15px;color:#6B6560;line-height:1.7;margin-bottom:24px">
+              Hi ${name}, thank you for your interest in the <strong style="color:#1C1A17">${vehicleName}</strong>.
+              We'll be in touch shortly.
+            </p>
+            <p style="font-size:15px;color:#6B6560;line-height:1.7">
+              In the meantime, feel free to WhatsApp us directly at
+              <a href="https://wa.me/${process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP}" style="color:#C9A96E">+27 82 000 0000</a>.
+            </p>
+            <div style="margin-top:40px;padding-top:24px;border-top:1px solid #EDE8DF;font-size:12px;color:#A09890">
+              © The 03 Collective - Johannesburg, South Africa
+            </div>
+          </div>
         `,
       })
     }
 
     return { success: true }
-  } catch (error) {
-    console.error('submitEnquiry failed', error)
+  } catch (err) {
+    console.error('[submitEnquiry]', err)
     return {
       success: false,
-      error: 'Something went wrong. Please try again or contact us directly.',
+      error: 'Something went wrong. Please WhatsApp us directly.',
     }
   }
 }

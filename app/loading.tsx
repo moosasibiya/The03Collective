@@ -1,3 +1,7 @@
 export default function Loading() {
-  return <div style={{ padding: 40 }}>Loading...</div>
+  return (
+    <div style={{ padding: '140px 40px', minHeight: '60vh' }}>
+      <span>Loading...</span>
+    </div>
+  )
 }

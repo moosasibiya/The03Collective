@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/studio'],
+        disallow: ['/studio/', '/api/'],
       },
     ],
     sitemap: 'https://www.the03collective.co.za/sitemap.xml',

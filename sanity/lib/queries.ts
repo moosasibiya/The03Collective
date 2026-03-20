@@ -92,7 +92,7 @@ export const RELATED_VEHICLES_QUERY = `
 `
 
 export const ALL_VEHICLE_SLUGS_QUERY = `
-  *[_type == "vehicle"]{
+  *[_type == "vehicle" && defined(slug.current)] {
     "slug": slug.current
   }
 `
