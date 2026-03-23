@@ -24,12 +24,9 @@ export default function MobileMenu({ open, onClose, pathname }: MobileMenuProps)
         x
       </button>
       <div className={styles.brand}>
+        <span className={styles.brandThe}>The</span>
         <span className={styles.brandNumeral}>03</span>
-        <div className={styles.brandDivider} />
-        <div className={styles.brandStack}>
-          <span className={styles.brandThe}>The</span>
-          <span className={styles.brandWord}>Collective</span>
-        </div>
+        <span className={styles.brandWord}>Collective</span>
       </div>
       <nav className={styles.nav}>
         {links.map((link) => {

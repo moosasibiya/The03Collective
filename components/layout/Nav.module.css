@@ -25,61 +25,58 @@
 }
 
 .logo {
-  display: flex;
-  align-items: center;
+  display: grid;
+  justify-items: start;
+  gap: 0;
   flex-shrink: 0;
+  width: max-content;
+  min-width: 128px;
+  padding: 0;
+  text-align: left;
+}
+
+.logoThe {
+  font-family: var(--logo-word), var(--font-sans), sans-serif;
+  color: #62656d;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.78em;
+  line-height: 1;
+  text-transform: uppercase;
+  padding-left: 2px;
+  margin-bottom: 3px;
 }
 
 .logoNumeral {
-  padding-right: 13px;
   color: var(--accent);
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 36px;
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  text-shadow: 0 0 40px rgba(201, 169, 110, 0.25);
+  font-family: var(--logo-num), var(--font-sans), sans-serif;
+  font-size: 44px;
+  font-weight: 100;
+  letter-spacing: 0.04em;
+  line-height: 0.78;
+  margin-left: 0;
+  text-shadow: 0 0 16px rgba(201, 169, 110, 0.14);
   transition:
     color var(--transition),
     text-shadow var(--transition);
 }
 
-.logoDivider {
-  width: 1px;
-  height: 26px;
-  margin-right: 13px;
-  background: linear-gradient(to bottom, transparent, rgba(201, 169, 110, 0.5), transparent);
-  transition: opacity var(--transition);
-}
-
-.logoWordmark {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.logoThe {
-  color: var(--text-ghost);
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 0.38em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 .logoCollective {
-  color: var(--text-muted);
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-family: var(--logo-word), var(--font-sans), sans-serif;
+  color: #8d9198;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.36em;
   line-height: 1;
   text-transform: uppercase;
+  padding-left: 2px;
+  margin-top: 4px;
   transition: color var(--transition);
 }
 
 .logo:hover .logoNumeral {
   color: var(--accent-light);
-  text-shadow: 0 0 48px rgba(201, 169, 110, 0.45);
+  text-shadow: 0 0 24px rgba(201, 169, 110, 0.26);
 }
 
 .logo:hover .logoCollective {

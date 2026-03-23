@@ -27,12 +27,9 @@ export default function Nav() {
       <header className={cn(styles.nav, scrolled && styles.scrolled)}>
         <div className={`container ${styles.inner}`}>
           <Link className={styles.logo} href="/">
+            <span className={styles.logoThe}>The</span>
             <span className={styles.logoNumeral}>03</span>
-            <span className={styles.logoDivider} />
-            <span className={styles.logoWordmark}>
-              <span className={styles.logoThe}>The</span>
-              <span className={styles.logoCollective}>Collective</span>
-            </span>
+            <span className={styles.logoCollective}>Collective</span>
           </Link>
 
           <nav className={styles.links}>

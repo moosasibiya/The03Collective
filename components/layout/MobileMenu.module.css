@@ -31,49 +31,46 @@
   position: absolute;
   top: 28px;
   left: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.brandNumeral {
-  padding-right: 11px;
-  color: var(--accent);
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 30px;
-  font-weight: 300;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.brandDivider {
-  width: 1px;
-  height: 22px;
-  margin-right: 11px;
-  background: linear-gradient(to bottom, transparent, rgba(201, 169, 110, 0.45), transparent);
-}
-
-.brandStack {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  display: grid;
+  justify-items: start;
+  gap: 0;
+  width: max-content;
+  min-width: 108px;
+  text-align: left;
 }
 
 .brandThe {
-  color: var(--text-ghost);
-  font-size: 6.5px;
-  font-weight: 700;
-  letter-spacing: 0.38em;
+  font-family: var(--logo-word), var(--font-sans), sans-serif;
+  color: #62656d;
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 0.78em;
   line-height: 1;
   text-transform: uppercase;
+  padding-left: 2px;
+  margin-bottom: 3px;
+}
+
+.brandNumeral {
+  color: var(--accent);
+  font-family: var(--logo-num), var(--font-sans), sans-serif;
+  font-size: 36px;
+  font-weight: 100;
+  letter-spacing: 0.04em;
+  line-height: 0.78;
+  margin-left: 0;
 }
 
 .brandWord {
-  color: var(--text-muted);
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-family: var(--logo-word), var(--font-sans), sans-serif;
+  color: #8d9198;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.36em;
   line-height: 1;
   text-transform: uppercase;
+  padding-left: 2px;
+  margin-top: 4px;
 }
 
 .nav {

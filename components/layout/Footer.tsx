@@ -10,12 +10,9 @@ export default function Footer() {
       <div className={`container ${styles.grid}`}>
         <div>
           <div className={styles.logo}>
+            <span className={styles.logoThe}>The</span>
             <span className={styles.logoNumeral}>03</span>
-            <div className={styles.logoDivider} />
-            <div className={styles.logoStack}>
-              <span className={styles.logoThe}>The</span>
-              <span className={styles.logoWord}>Collective</span>
-            </div>
+            <span className={styles.logoWord}>Collective</span>
           </div>
           <p className={styles.tagline}>
             A curated automotive collective for buyers who care about quality, and sellers who

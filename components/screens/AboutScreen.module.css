@@ -106,42 +106,48 @@
   position: absolute;
   inset: 50% auto auto 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  width: max-content;
+  text-align: left;
 }
 
 .visualThe,
 .visualWord {
   display: block;
-  color: var(--accent);
+  font-family: var(--logo-word), var(--font-sans), sans-serif;
   line-height: 1;
   text-transform: uppercase;
 }
 
 .visualThe {
-  margin-bottom: 2px;
+  margin-bottom: 6px;
+  color: #62656d;
   font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.5em;
-  opacity: 0.25;
+  font-weight: 400;
+  letter-spacing: 0.78em;
+  opacity: 0.55;
+  padding-left: 3px;
 }
 
 .visualNum {
   display: block;
   color: var(--accent);
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 108px;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  opacity: 0.12;
+  font-family: var(--logo-num), var(--font-sans), sans-serif;
+  font-size: 84px;
+  font-weight: 100;
+  line-height: 0.78;
+  letter-spacing: 0.04em;
+  margin-left: 0;
+  opacity: 0.24;
 }
 
 .visualWord {
-  margin-top: 4px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.45em;
-  opacity: 0.2;
+  margin-top: 7px;
+  color: #8d9198;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.36em;
+  opacity: 0.55;
+  padding-left: 3px;
 }
 
 .visualRule {
