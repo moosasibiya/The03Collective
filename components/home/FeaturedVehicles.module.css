@@ -10,6 +10,11 @@
   margin-top: 12px;
 }
 
+.kicker {
+  font-size: 13px;
+  letter-spacing: 0.24em;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

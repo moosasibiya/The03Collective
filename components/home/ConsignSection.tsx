@@ -13,14 +13,10 @@ export default function ConsignSection() {
             <div className={styles.visualBg} />
             <span className={styles.cornerTl} />
             <span className={styles.cornerBr} />
-            <div className={styles.badge}>
-              <span className={styles.badgeValue}>R 2.4M+</span>
-              <span className={styles.badgeLabel}>In Vehicles Consigned</span>
-            </div>
           </RevealWrapper>
 
           <RevealWrapper delay={120}>
-            <span className="label">Sell Your Car</span>
+            <span className={`label ${styles.eyebrow}`}>Sell Your Car</span>
             <h2 className={`sectionTitle ${styles.title}`}>
               Your Car Deserves Better
               <br />

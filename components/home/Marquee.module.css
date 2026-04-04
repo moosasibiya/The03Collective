@@ -1,8 +1,8 @@
 .section {
   padding: 16px 0;
-  border-top: 1px solid rgba(201, 169, 110, 0.18);
-  border-bottom: 1px solid rgba(201, 169, 110, 0.18);
-  background: #e8e0d3;
+  border-top: 1px solid rgba(var(--accent-rgb), 0.24);
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.24);
+  background: #111111;
   overflow: hidden;
 }
 
@@ -15,7 +15,7 @@
 
 .item {
   position: relative;
-  color: #7c756e;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -30,7 +30,7 @@
   height: 1px;
   margin-left: 16px;
   vertical-align: middle;
-  background: rgba(201, 169, 110, 0.45);
+  background: rgba(var(--accent-rgb), 0.45);
 }
 
 @keyframes marquee {

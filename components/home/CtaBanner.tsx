@@ -18,7 +18,7 @@ export default function CtaBanner() {
           <Button href="/inventory" size="lg" variant="dark">
             Browse Inventory {'->'}
           </Button>
-          <Button href="/sell" size="lg" variant="darkOutline">
+          <Button href="/sell" size="lg">
             Sell Your Car
           </Button>
         </RevealWrapper>

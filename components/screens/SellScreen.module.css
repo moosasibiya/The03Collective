@@ -35,7 +35,7 @@
   justify-content: center;
   width: 46px;
   height: 46px;
-  border: 1px solid rgba(201, 169, 110, 0.22);
+  border: 1px solid rgba(var(--accent-rgb), 0.22);
   border-radius: 50%;
   color: var(--accent);
   font-family: var(--font-serif), Georgia, serif;
@@ -57,7 +57,18 @@
 }
 
 .faqSection {
+  margin-top: 0;
+}
+
+.faqBand {
   margin-top: 72px;
+  padding: 72px 0 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  background:
+    radial-gradient(circle at top, rgba(var(--accent-rgb), 0.05), transparent 34%),
+    linear-gradient(180deg, var(--light-bg-3) 0%, var(--light-bg) 100%);
+  color: var(--light-text);
 }
 
 .faqGrid {
@@ -68,15 +79,15 @@
 
 .faqItem {
   padding: 20px 22px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: var(--radius);
-  background: var(--card);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .faqItem summary {
   list-style: none;
   cursor: pointer;
-  color: var(--text);
+  color: var(--light-text);
   font-family: var(--font-serif), Georgia, serif;
   font-size: 24px;
 }
@@ -87,7 +98,7 @@
 
 .faqItem p {
   margin-top: 14px;
-  color: var(--text-muted);
+  color: var(--light-text-muted);
   line-height: 1.8;
 }
 

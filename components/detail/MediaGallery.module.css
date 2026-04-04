@@ -1,20 +1,93 @@
 .media {
-  padding-top: 76px;
+  padding: 24px 0 28px;
+}
+
+.shell {
+  display: grid;
+  gap: 0;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
 }
 
 .main {
   position: relative;
+}
+
+.mainInner {
+  position: relative;
   overflow: hidden;
-  min-height: 72vh;
-  border-bottom: 1px solid var(--border-soft);
-  background: var(--surface);
+  background: #070809;
+}
+
+.mainTrigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px clamp(18px, 2vw, 28px) clamp(18px, 2vw, 28px);
+  cursor: zoom-in;
+}
+
+.mediaCanvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.expandHint {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.52);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    transform var(--transition);
+}
+
+.mainTrigger:hover .expandHint {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(10, 10, 11, 0.68);
+  transform: translateY(-2px);
 }
 
 .image,
-.visual {
+.thumbImage {
   width: 100%;
   height: 100%;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(78vh, 920px);
+  object-fit: contain;
+  object-position: center;
+}
+
+.thumbImage {
   object-fit: cover;
+  object-position: center;
 }
 
 .visual {
@@ -27,15 +100,246 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 55%, rgba(201, 169, 110, 0.08), transparent 48%),
+    radial-gradient(circle at 50% 55%, rgba(255, 255, 255, 0.06), transparent 48%),
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: auto, 72px 72px, 72px 72px;
 }
 
+.navButton {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.5);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transform: translateY(-50%);
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.navButton:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(10, 10, 11, 0.72);
+  transform: translateY(-50%) scale(1.03);
+}
+
+.navButton svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.prev {
+  left: clamp(18px, 2vw, 28px);
+}
+
+.next {
+  right: clamp(18px, 2vw, 28px);
+}
+
+.counter {
+  position: absolute;
+  right: clamp(18px, 2vw, 28px);
+  bottom: clamp(18px, 2vw, 28px);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.58);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 28px);
+  background: rgba(4, 4, 5, 0.94);
+  backdrop-filter: blur(12px);
+}
+
+.lightboxInner {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  width: min(100%, 1560px);
+  max-width: 100%;
+  height: min(960px, calc(100dvh - clamp(32px, 6vw, 56px)));
+  min-height: 0;
+}
+
+.lightboxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.lightboxMeta {
+  display: grid;
+  gap: 4px;
+}
+
+.lightboxEyebrow {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.lightboxTitle {
+  color: rgba(255, 255, 255, 0.94);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(24px, 2.2vw, 34px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.lightboxHeaderActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightboxCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lightboxStage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 36%),
+    #060708;
+}
+
+.lightboxViewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  padding: clamp(18px, 3vw, 42px);
+}
+
+.lightboxImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lightboxClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.52);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.lightboxClose:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(10, 10, 11, 0.72);
+  transform: scale(1.03);
+}
+
+.lightboxClose svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lightboxNav {
+  z-index: 3;
+}
+
+.lightboxThumbs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  min-height: 0;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.lightboxThumb {
+  flex: 0 0 120px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lightboxThumbs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.lightboxThumbs::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
 .thumbs {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
 }
 
 .thumb {
@@ -43,45 +347,99 @@
   overflow: hidden;
   aspect-ratio: 16 / 10;
   border: 0;
-  border-right: 1px solid var(--border-soft);
-  border-bottom: 1px solid var(--border-soft);
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
-}
-
-.thumb:last-child {
-  border-right: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
 .thumb::after {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid transparent;
-  transition: border-color var(--transition);
+  box-shadow: inset 0 0 0 0 transparent;
+  transition: box-shadow var(--transition), background var(--transition);
 }
 
 .active::after,
 .thumb:hover::after {
-  border-color: rgba(201, 169, 110, 0.55);
+  box-shadow: inset 0 0 0 2px rgba(var(--accent-rgb), 0.55);
 }
 
-.thumbImage,
 .thumbVisual {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+.thumbImage,
+.thumbVisual {
+  transition: transform 0.45s ease;
+}
+
+.thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+}
+
+.thumb:hover .thumbImage,
+.thumb:hover .thumbVisual,
+.active .thumbImage,
+.active .thumbVisual {
+  transform: scale(1.03);
+}
+
 @media (max-width: 720px) {
-  .main {
-    min-height: 48vh;
+  .mainTrigger {
+    padding: 10px 14px 14px;
   }
 
   .thumbs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .thumb:nth-child(2n) {
-    border-right: 0;
+  .navButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  .counter {
+    bottom: 14px;
+    right: 14px;
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 10px;
+  }
+
+  .lightboxInner {
+    gap: 12px;
+    height: calc(100dvh - 24px);
+  }
+
+  .lightboxViewport {
+    padding: 14px 12px 18px;
+  }
+
+  .lightboxHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lightboxHeaderActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .lightboxThumb {
+    flex-basis: 92px;
+  }
+
+  .expandHint {
+    left: 14px;
+    bottom: 14px;
+    padding: 8px 12px;
+    font-size: 10px;
   }
 }

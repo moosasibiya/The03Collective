@@ -52,8 +52,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 55%, rgba(201, 169, 110, 0.07) 0%, transparent 60%),
-    linear-gradient(145deg, #121008 0%, #0a0906 50%, #161410 100%);
+    radial-gradient(ellipse 70% 60% at 50% 55%, rgba(var(--accent-rgb), 0.08) 0%, transparent 60%),
+    linear-gradient(145deg, #131315 0%, #09090b 50%, #20060a 100%);
 }
 
 .visualBg::after {
@@ -61,8 +61,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(201, 169, 110, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 169, 110, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(var(--accent-rgb), 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -120,7 +120,7 @@
 
 .visualThe {
   margin-bottom: 6px;
-  color: #62656d;
+  color: rgba(255, 255, 255, 0.42);
   font-size: 9px;
   font-weight: 400;
   letter-spacing: 0.78em;
@@ -142,7 +142,7 @@
 
 .visualWord {
   margin-top: 7px;
-  color: #8d9198;
+  color: rgba(255, 255, 255, 0.76);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.36em;
@@ -267,19 +267,19 @@
 .teamImage {
   aspect-ratio: 4 / 3;
   background:
-    radial-gradient(circle at 55% 42%, rgba(201, 169, 110, 0.16), transparent 30%),
+    radial-gradient(circle at 55% 42%, rgba(var(--accent-rgb), 0.16), transparent 30%),
     linear-gradient(145deg, #151311, #0f0f12);
 }
 
 .teamImage[data-theme='2'] {
   background:
-    radial-gradient(circle at 40% 38%, rgba(201, 169, 110, 0.16), transparent 28%),
+    radial-gradient(circle at 40% 38%, rgba(var(--accent-rgb), 0.16), transparent 28%),
     linear-gradient(145deg, #0f1217, #13100f);
 }
 
 .teamImage[data-theme='3'] {
   background:
-    radial-gradient(circle at 58% 38%, rgba(201, 169, 110, 0.16), transparent 30%),
+    radial-gradient(circle at 58% 38%, rgba(var(--accent-rgb), 0.16), transparent 30%),
     linear-gradient(145deg, #17100f, #101114);
 }
 

@@ -70,25 +70,29 @@ export default function SellScreen() {
               </div>
             </RevealWrapper>
           </div>
-
-          <RevealWrapper className={styles.faqSection}>
-            <span className="label">Common Questions</span>
-            <h2 className={`sectionTitle ${styles.sectionTitle}`}>
-              Everything You Need
-              <br />
-              to <em>Know.</em>
-            </h2>
-
-            <div className={styles.faqGrid}>
-              {FAQS.map((faq) => (
-                <details className={styles.faqItem} key={faq.question}>
-                  <summary>{faq.question}</summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </RevealWrapper>
         </div>
+
+        <section className={styles.faqBand}>
+          <div className="container">
+            <RevealWrapper className={styles.faqSection}>
+              <span className="label">Common Questions</span>
+              <h2 className={`sectionTitle ${styles.sectionTitle}`}>
+                Everything You Need
+                <br />
+                to <em>Know.</em>
+              </h2>
+
+              <div className={styles.faqGrid}>
+                {FAQS.map((faq) => (
+                  <details className={styles.faqItem} key={faq.question}>
+                    <summary>{faq.question}</summary>
+                    <p>{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </RevealWrapper>
+          </div>
+        </section>
       </div>
     </>
   )

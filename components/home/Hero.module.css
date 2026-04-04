@@ -19,10 +19,7 @@
   position: absolute;
   inset: 0;
   isolation: isolate;
-  background:
-    radial-gradient(circle at 50% 70%, rgba(201, 169, 110, 0.2), transparent 28%),
-    radial-gradient(circle at 25% 20%, rgba(201, 169, 110, 0.08), transparent 30%),
-    linear-gradient(160deg, #111215 0%, #0b0c0f 42%, #16110d 100%);
+  background: linear-gradient(160deg, #121214 0%, #09090b 42%, #101114 100%);
 }
 
 .video {
@@ -37,14 +34,23 @@
   pointer-events: none;
 }
 
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center 58%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+  filter: saturate(0.96) brightness(0.8) contrast(1.08);
+  pointer-events: none;
+}
+
 .sceneTint {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background:
-    radial-gradient(circle at 50% 70%, rgba(201, 169, 110, 0.18), transparent 28%),
-    radial-gradient(circle at 25% 20%, rgba(201, 169, 110, 0.06), transparent 30%),
-    linear-gradient(160deg, rgba(17, 18, 21, 0.62) 0%, rgba(11, 12, 15, 0.48) 42%, rgba(22, 17, 13, 0.72) 100%);
+  background: linear-gradient(160deg, rgba(18, 18, 20, 0.28) 0%, rgba(9, 9, 11, 0.16) 42%, rgba(10, 10, 11, 0.42) 100%);
 }
 
 .scene::before {
@@ -53,8 +59,8 @@
   inset: 18% 10% 20%;
   z-index: 2;
   background:
-    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.06), transparent 60%),
-    linear-gradient(145deg, rgba(30, 30, 34, 0.2), transparent 40%);
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.04), transparent 60%),
+    linear-gradient(145deg, rgba(30, 30, 34, 0.12), transparent 40%);
   transform: perspective(1200px) rotateX(72deg);
   filter: blur(1px);
 }
@@ -80,14 +86,14 @@
   width: 42vw;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(201, 169, 110, 0.18), transparent 72%);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05), transparent 72%);
   filter: blur(40px);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 11, 0.1), rgba(10, 10, 11, 0.7) 75%, var(--bg));
+  background: linear-gradient(180deg, rgba(10, 10, 11, 0.06), rgba(10, 10, 11, 0.5) 72%, var(--bg));
 }
 
 .content {
@@ -108,7 +114,7 @@
 }
 
 .title {
-  color: var(--text);
+  color: #ffffff;
   font-family: var(--font-serif), Georgia, serif;
   font-size: clamp(56px, 8vw, 108px);
   font-weight: 300;
@@ -123,7 +129,7 @@
 
 .subtitle {
   margin-top: 22px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.76);
   font-size: 18px;
   line-height: 1.8;
 }
@@ -140,52 +146,87 @@
   align-items: center;
   gap: 14px;
   margin-top: auto;
-  margin-bottom: 32px;
-  color: var(--text-ghost);
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.56);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  animation: scrollPromptFloat 3.8s cubic-bezier(0.33, 0, 0.2, 1) infinite;
 }
 
 .scrollLine {
+  position: relative;
   width: 48px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  overflow: hidden;
 }
 
-.stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+  animation: scrollPromptSweep 3.8s cubic-bezier(0.33, 0, 0.2, 1) infinite;
 }
 
-.stat {
-  min-width: 170px;
-  padding: 18px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius);
-  background: rgba(10, 10, 11, 0.5);
-  backdrop-filter: blur(12px);
+.scroll span {
+  animation: scrollPromptGlow 3.8s cubic-bezier(0.33, 0, 0.2, 1) infinite;
 }
 
-.statValue {
-  display: block;
-  color: var(--text);
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 36px;
-  font-weight: 300;
-  line-height: 1;
+@keyframes scrollPromptFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
 }
 
-.statLabel {
-  display: block;
-  margin-top: 6px;
-  color: var(--text-muted);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+@keyframes scrollPromptSweep {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.85;
+  }
+
+  65% {
+    transform: translateX(260%);
+    opacity: 0.85;
+  }
+
+  100% {
+    transform: translateX(260%);
+    opacity: 0;
+  }
+}
+
+@keyframes scrollPromptGlow {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+
+  50% {
+    opacity: 0.92;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll,
+  .scroll span,
+  .scrollLine::after {
+    animation: none;
+  }
 }
 
 @media (max-width: 980px) {
@@ -210,10 +251,5 @@
 
   .subtitle {
     font-size: 16px;
-  }
-
-  .stats {
-    display: grid;
-    grid-template-columns: 1fr;
   }
 }

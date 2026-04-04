@@ -7,35 +7,36 @@
 }
 
 :root {
-  --bg: #0a0a0b;
-  --surface: #111113;
-  --card: #161618;
-  --card-hover: #1a1a1d;
-  --border: #252528;
-  --border-soft: #1c1c1f;
-  --accent: #c9a96e;
-  --accent-light: #e8d5a3;
-  --accent-dim: rgba(201, 169, 110, 0.12);
-  --text: #f5f0e8;
-  --text-muted: #8a8a92;
-  --text-ghost: #45454d;
-  --text-weak: #a6a1a0;
-  --sold: #9b2335;
-  --reserved: #8b6914;
-  --available: #3d6b5f;
-  --available-text: #6dbfa8;
+  --bg: #050506;
+  --surface: #0b0c0e;
+  --card: #101114;
+  --card-hover: #15171b;
+  --border: #25272d;
+  --border-soft: #17181c;
+  --accent: #c1121f;
+  --accent-rgb: 193, 18, 31;
+  --accent-light: #e5484d;
+  --accent-dim: rgba(var(--accent-rgb), 0.12);
+  --text: #f5f5f5;
+  --text-muted: #aaadb6;
+  --text-ghost: #5e6168;
+  --text-weak: #c1c4cc;
+  --sold: #8d0c18;
+  --reserved: #6a6d74;
+  --available: #265b49;
+  --available-text: #1c7a5a;
   --wa: #1a5c3a;
   --wa-hover: #236b45;
-  --light-bg: #f4efe6;
-  --light-bg-2: #ede8df;
-  --light-bg-3: #f9f6f1;
-  --light-text: #1c1a17;
-  --light-text-muted: #6b6560;
-  --light-text-ghost: #a09890;
-  --light-border: #ddd8cf;
+  --light-bg: #f3f3f1;
+  --light-bg-2: #ececeb;
+  --light-bg-3: #ffffff;
+  --light-text: #111111;
+  --light-text-muted: #666970;
+  --light-text-ghost: #a1a4aa;
+  --light-border: #dfdfe3;
   --radius: 4px;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
-  --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.65);
+  --shadow: 0 12px 36px rgba(0, 0, 0, 0.42);
+  --shadow-hover: 0 18px 52px rgba(0, 0, 0, 0.58);
   --transition: 0.28s ease;
 }
 
@@ -46,8 +47,8 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(201, 169, 110, 0.06), transparent 28%),
-    var(--bg);
+    radial-gradient(circle at top, rgba(var(--accent-rgb), 0.08), transparent 26%),
+    linear-gradient(180deg, #08090a 0%, #050506 100%);
   color: var(--text);
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 16px;
@@ -58,8 +59,8 @@ body {
 }
 
 ::selection {
-  background: rgba(201, 169, 110, 0.24);
-  color: var(--text);
+  background: rgba(var(--accent-rgb), 0.16);
+  color: #ffffff;
 }
 
 ::-webkit-scrollbar {
@@ -67,7 +68,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: var(--surface);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -186,9 +187,9 @@ main {
   justify-content: center;
   width: 22px;
   height: 22px;
-  border: 1px solid rgba(201, 169, 110, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   border-radius: 999px;
-  background: rgba(201, 169, 110, 0.08);
+  background: rgba(var(--accent-rgb), 0.08);
   color: var(--accent);
   flex-shrink: 0;
 }
@@ -233,7 +234,7 @@ main {
   left: 16.66%;
   right: 16.66%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.4), transparent);
 }
 
 .stepCard {
@@ -242,19 +243,28 @@ main {
 }
 
 .stepNumber {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 64px;
   height: 64px;
   margin: 0 auto 24px;
-  border: 1px solid rgba(201, 169, 110, 0.22);
+  border: 1px solid rgba(var(--accent-rgb), 0.22);
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(201, 169, 110, 0.14), transparent 72%);
+  background:
+    radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-rgb), 0.03) 68%),
+    var(--bg);
   color: var(--accent);
   font-family: var(--font-serif), Georgia, serif;
   font-size: 28px;
   font-weight: 400;
+}
+
+.lightSection .stepNumber {
+  background:
+    radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-rgb), 0.03) 68%),
+    var(--light-bg-3);
 }
 
 .stepTitle {
@@ -281,7 +291,7 @@ main {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent),
+    linear-gradient(180deg, rgba(var(--accent-rgb), 0.05), transparent 42%),
     var(--card);
   box-shadow: var(--shadow);
 }
@@ -327,7 +337,7 @@ main {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text);
   padding: 14px 16px;
   transition:
@@ -345,9 +355,9 @@ main {
 .formTextarea:focus,
 .formSelect:focus {
   outline: none;
-  border-color: rgba(201, 169, 110, 0.45);
-  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.12);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .formTextarea {

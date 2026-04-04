@@ -7,7 +7,9 @@
   align-items: center;
   justify-content: center;
   gap: 32px;
-  background: rgba(10, 10, 11, 0.98);
+  background:
+    linear-gradient(180deg, rgba(var(--accent-rgb), 0.08), transparent 30%),
+    rgba(8, 9, 10, 0.98);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition);
@@ -22,7 +24,7 @@
   position: absolute;
   top: 24px;
   right: 28px;
-  color: var(--text-muted);
+  color: #ffffff;
   font-size: 28px;
   cursor: pointer;
 }
@@ -41,7 +43,7 @@
 
 .brandThe {
   font-family: var(--logo-word), var(--font-sans), sans-serif;
-  color: #62656d;
+  color: rgba(255, 255, 255, 0.46);
   font-size: 7px;
   font-weight: 400;
   letter-spacing: 0.78em;
@@ -63,7 +65,7 @@
 
 .brandWord {
   font-family: var(--logo-word), var(--font-sans), sans-serif;
-  color: #8d9198;
+  color: rgba(255, 255, 255, 0.88);
   font-size: 9px;
   font-weight: 400;
   letter-spacing: 0.36em;
@@ -81,7 +83,7 @@
 }
 
 .link {
-  color: var(--text);
+  color: rgba(255, 255, 255, 0.88);
   font-family: var(--font-serif), Georgia, serif;
   font-size: 36px;
   font-weight: 300;

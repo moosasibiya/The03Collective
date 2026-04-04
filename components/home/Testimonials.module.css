@@ -17,7 +17,7 @@
   position: absolute;
   top: 22px;
   left: 32px;
-  color: rgba(201, 169, 110, 0.18);
+  color: rgba(var(--accent-rgb), 0.18);
   font-family: var(--font-serif), Georgia, serif;
   font-size: 92px;
   line-height: 0.7;
@@ -48,7 +48,7 @@
 .line {
   width: 52px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.4), transparent);
 }
 
 .dots {
@@ -62,7 +62,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(17, 17, 17, 0.14);
   cursor: pointer;
 }
 

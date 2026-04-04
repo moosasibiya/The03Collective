@@ -21,10 +21,11 @@ export default function Nav() {
   const pathname = usePathname()
   const scrolled = useScrolled(24)
   const [open, setOpen] = useState(false)
+  const onHome = pathname === '/'
 
   return (
     <>
-      <header className={cn(styles.nav, scrolled && styles.scrolled)}>
+      <header className={cn(styles.nav, onHome && !scrolled && styles.inverse, scrolled && styles.scrolled)}>
         <div className={`container ${styles.inner}`}>
           <Link className={styles.logo} href="/">
             <span className={styles.logoThe}>The</span>
@@ -45,10 +46,10 @@ export default function Nav() {
           </nav>
 
           <div className={styles.cta}>
-            <Button href="/sell" size="sm" variant="ghost">
+            <Button className={styles.navGhost} href="/sell" size="sm" variant="ghost">
               Sell Your Car
             </Button>
-            <Button href="/inventory" size="sm" variant="outline">
+            <Button className={styles.navOutline} href="/inventory" size="sm" variant="outline">
               Browse Inventory
             </Button>
           </div>

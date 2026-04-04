@@ -16,12 +16,12 @@ export default function RelatedVehicles({ vehicles }: RelatedVehiclesProps) {
     <section className={styles.section}>
       <div className={styles.header}>
         <div>
-          <span className="label">You Might Also Like</span>
+          <span className={`label ${styles.eyebrow}`}>You Might Also Like</span>
           <h3 className={`sectionTitle ${styles.title}`}>
             Related <em>Vehicles</em>
           </h3>
         </div>
-        <Button href="/inventory" size="sm" variant="ghost">
+        <Button href="/inventory" size="sm" variant="darkOutline">
           View All {'->'}
         </Button>
       </div>

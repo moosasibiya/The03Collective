@@ -1,8 +1,8 @@
 .breadcrumbBar {
   margin-top: 76px;
   padding: 14px 0;
-  border-bottom: 1px solid var(--border-soft);
-  background: var(--surface);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .breadcrumb {
@@ -21,15 +21,15 @@
 }
 
 .breadcrumb a {
-  color: var(--text-ghost);
+  color: rgba(17, 17, 17, 0.82);
 }
 
 .breadcrumb span {
-  color: var(--text-ghost);
+  color: rgba(17, 17, 17, 0.58);
 }
 
 .current {
-  color: var(--text-muted);
+  color: #111111;
 }
 
 .body {
@@ -45,6 +45,8 @@
 
 .label {
   margin-bottom: 14px;
+  font-size: clamp(14px, 1.3vw, 18px);
+  letter-spacing: 0.24em;
 }
 
 .title {
@@ -71,6 +73,21 @@
   font-family: var(--font-serif), Georgia, serif;
   font-size: 28px;
   font-weight: 400;
+}
+
+.section :global(.richText) {
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.9;
+}
+
+.relatedBand {
+  margin-top: 88px;
+  padding: 72px 0 96px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  background:
+    radial-gradient(circle at top, rgba(var(--accent-rgb), 0.05), transparent 34%),
+    linear-gradient(180deg, var(--light-bg-3) 0%, var(--light-bg) 100%);
+  color: var(--light-text);
 }
 
 @media (max-width: 980px) {

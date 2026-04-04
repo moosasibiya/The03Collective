@@ -1,6 +1,9 @@
 .section {
   padding: 96px 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
   background:
+    radial-gradient(circle at top, rgba(var(--accent-rgb), 0.06), transparent 34%),
     linear-gradient(135deg, var(--light-bg) 0%, var(--light-bg-3) 55%, var(--light-bg-2) 100%);
   color: var(--light-text);
 }

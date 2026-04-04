@@ -21,8 +21,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 60% 62%, rgba(201, 169, 110, 0.18), transparent 24%),
-    linear-gradient(145deg, #121008 0%, #0a0906 50%, #161410 100%);
+    radial-gradient(circle at 60% 62%, rgba(var(--accent-rgb), 0.18), transparent 24%),
+    linear-gradient(145deg, #131315 0%, #09090b 50%, #20060a 100%);
 }
 
 .visualBg::after {
@@ -30,8 +30,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(201, 169, 110, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201, 169, 110, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(var(--accent-rgb), 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--accent-rgb), 0.04) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
@@ -57,33 +57,9 @@
   border-width: 0 1px 1px 0;
 }
 
-.badge {
-  position: absolute;
-  right: 22px;
-  bottom: 22px;
-  display: grid;
-  gap: 6px;
-  padding: 18px 20px;
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  border-radius: var(--radius);
-  background: rgba(10, 10, 11, 0.74);
-  backdrop-filter: blur(12px);
-}
-
-.badgeValue {
-  color: var(--accent);
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 34px;
-  font-weight: 300;
-  line-height: 1;
-}
-
-.badgeLabel {
-  color: var(--text-muted);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.eyebrow {
+  font-size: clamp(16px, 1.5vw, 22px);
+  letter-spacing: 0.26em;
 }
 
 .title {

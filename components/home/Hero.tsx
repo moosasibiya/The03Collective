@@ -2,7 +2,6 @@ import { existsSync } from 'node:fs'
 import path from 'node:path'
 import Button from '@/components/ui/Button'
 import RevealWrapper from '@/components/ui/RevealWrapper'
-import { HERO_STATS } from '@/lib/site-content'
 import styles from './Hero.module.css'
 
 const HERO_VIDEO_SOURCES = [
@@ -18,14 +17,27 @@ const HERO_VIDEO_SOURCES = [
   },
 ]
 
+const HERO_IMAGE = {
+  src: '/media/hero-porsche-br.jpg',
+  file: path.join(process.cwd(), 'public', 'media', 'hero-porsche-br.jpg'),
+}
+
 export default function Hero() {
   const videoSources = HERO_VIDEO_SOURCES.filter((source) => existsSync(source.file))
-  const hasHeroVideo = videoSources.length > 0
+  const hasHeroImage = existsSync(HERO_IMAGE.file)
+  const hasHeroVideo = !hasHeroImage && videoSources.length > 0
 
   return (
     <section className={styles.hero}>
       <div className={styles.grid} />
       <div className={styles.scene}>
+        {hasHeroImage ? (
+          <div
+            aria-hidden="true"
+            className={styles.image}
+            style={{ backgroundImage: `url('${HERO_IMAGE.src}')` }}
+          />
+        ) : null}
         {hasHeroVideo ? (
           <video
             aria-hidden="true"
@@ -74,15 +86,6 @@ export default function Hero() {
           <div className={styles.scrollLine} />
           <span>Scroll</span>
         </div>
-
-        <RevealWrapper className={styles.stats} delay={160}>
-          {HERO_STATS.map((item) => (
-            <div className={styles.stat} key={item.label}>
-              <span className={styles.statValue}>{item.value}</span>
-              <span className={styles.statLabel}>{item.label}</span>
-            </div>
-          ))}
-        </RevealWrapper>
       </div>
     </section>
   )

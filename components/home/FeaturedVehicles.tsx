@@ -14,7 +14,7 @@ export default function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
       <div className="container">
         <RevealWrapper className={styles.header}>
           <div>
-            <span className="label">Current Inventory</span>
+            <span className={`label ${styles.kicker}`}>Current Inventory</span>
             <h2 className={`sectionTitle ${styles.title}`}>
               Selected for
               <br />a <em>Reason.</em>
