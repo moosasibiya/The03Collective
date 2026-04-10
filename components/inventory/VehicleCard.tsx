@@ -1,19 +1,23 @@
+import type { Route } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import type { Vehicle } from '@/types'
 import Badge from '@/components/ui/Badge'
 import Button from '@/components/ui/Button'
 import { SITE_CONTACT } from '@/lib/site-content'
 import { getVehicleThemeStyle } from '@/lib/site-data'
+import { cn } from '@/utils/cn'
 import { buildWhatsApp, formatMileage, formatPrice } from '@/utils/format'
 import styles from './VehicleCard.module.css'
 
 type VehicleCardProps = {
   vehicle: Vehicle
   index: number
+  tone?: 'dark' | 'light'
 }
 
-export default function VehicleCard({ vehicle, index }: VehicleCardProps) {
-  const href = `/inventory/${vehicle.slug.current}`
+export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCardProps) {
+  const href = `/inventory/${vehicle.slug.current}` as Route
   const theme = getVehicleThemeStyle(vehicle.slug.current || index)
   const isSold = vehicle.status === 'sold'
   const isReserved = vehicle.status === 'reserved'
@@ -22,7 +26,7 @@ export default function VehicleCard({ vehicle, index }: VehicleCardProps) {
     `Hi, I'm interested in the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`
 
   return (
-    <article className={styles.card}>
+    <article className={cn(styles.card, tone === 'light' && styles.lightCard)}>
       <div className={styles.topLine} />
       <div className={styles.imageWrap}>
         {vehicle.mainImage?.asset.url ? (
@@ -65,7 +69,7 @@ export default function VehicleCard({ vehicle, index }: VehicleCardProps) {
         </div>
       </div>
 
-      <a className={styles.body} href={href}>
+      <Link className={styles.body} href={href}>
         <div className={styles.meta}>
           <span>{vehicle.year}</span>
           <span className={styles.separator}>.</span>
@@ -87,7 +91,7 @@ export default function VehicleCard({ vehicle, index }: VehicleCardProps) {
           </div>
           <span className={styles.arrow}>{'->'}</span>
         </div>
-      </a>
+      </Link>
     </article>
   )
 }

@@ -160,6 +160,13 @@
   background: var(--nav-hamburger);
 }
 
+.logo:focus-visible,
+.link:focus-visible,
+.hamburger:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 6px;
+}
+
 .navGhost {
   background: var(--accent);
   color: #ffffff;

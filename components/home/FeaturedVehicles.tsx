@@ -10,7 +10,7 @@ type FeaturedVehiclesProps = {
 
 export default function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
   return (
-    <section className="pageSection">
+    <section className={styles.section}>
       <div className="container">
         <RevealWrapper className={styles.header}>
           <div>
@@ -27,7 +27,7 @@ export default function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
 
         <div className={styles.grid}>
           {vehicles.map((vehicle, index) => (
-            <VehicleCard index={index} key={vehicle._id} vehicle={vehicle} />
+            <VehicleCard index={index} key={vehicle._id} tone="light" vehicle={vehicle} />
           ))}
         </div>
 

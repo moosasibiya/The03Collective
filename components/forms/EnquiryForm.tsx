@@ -4,6 +4,7 @@ import { useActionState, useRef, useState } from 'react'
 import { submitEnquiry } from '@/app/actions/enquiry'
 import Button from '@/components/ui/Button'
 import FormSuccess from './FormSuccess'
+import SpamTrap from './SpamTrap'
 
 type EnquiryFormProps = {
   vehicleName: string
@@ -38,6 +39,7 @@ export default function EnquiryForm({ vehicleName, vehicleSlug }: EnquiryFormPro
       onSubmit={() => setDismissedSuccess(false)}
       ref={formRef}
     >
+      <SpamTrap idPrefix="enquiry" />
       <input name="vehicleSlug" type="hidden" value={vehicleSlug} />
       <input name="vehicleName" type="hidden" value={vehicleName} />
 
@@ -45,7 +47,15 @@ export default function EnquiryForm({ vehicleName, vehicleSlug }: EnquiryFormPro
         <label className="formLabel" htmlFor="enquiry-name">
           Name *
         </label>
-        <input className="formInput" id="enquiry-name" name="name" placeholder="Your full name" required />
+        <input
+          autoComplete="name"
+          className="formInput"
+          id="enquiry-name"
+          maxLength={80}
+          name="name"
+          placeholder="Your full name"
+          required
+        />
       </div>
 
       <div className="formFull">
@@ -53,11 +63,15 @@ export default function EnquiryForm({ vehicleName, vehicleSlug }: EnquiryFormPro
           Phone *
         </label>
         <input
+          autoComplete="tel"
           className="formInput"
           id="enquiry-phone"
+          inputMode="tel"
+          maxLength={20}
           name="phone"
           placeholder="+27 82 000 0000"
           required
+          type="tel"
         />
       </div>
 
@@ -65,7 +79,14 @@ export default function EnquiryForm({ vehicleName, vehicleSlug }: EnquiryFormPro
         <label className="formLabel" htmlFor="enquiry-email">
           Email
         </label>
-        <input className="formInput" id="enquiry-email" name="email" placeholder="your@email.com" />
+        <input
+          autoComplete="email"
+          className="formInput"
+          id="enquiry-email"
+          name="email"
+          placeholder="your@email.com"
+          type="email"
+        />
       </div>
 
       <div className="formFull">
@@ -75,13 +96,15 @@ export default function EnquiryForm({ vehicleName, vehicleSlug }: EnquiryFormPro
         <textarea
           className="formTextarea"
           id="enquiry-message"
+          maxLength={1000}
           name="message"
           placeholder={`Tell us what you'd like to know about the ${vehicleName}.`}
+          rows={5}
         />
       </div>
 
       {state?.success === false ? (
-        <p className="formFull" style={{ color: '#e05a6e', fontSize: 14 }}>
+        <p className="formFull" role="alert" style={{ color: '#e05a6e', fontSize: 14 }}>
           {state.error}
         </p>
       ) : null}

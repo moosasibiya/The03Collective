@@ -22,7 +22,6 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
   const active = gallery[activeIndex]
   const hasMultiple = gallery.length > 1
   const activeWidth = active?.asset.metadata?.dimensions.width ?? 1600
@@ -35,10 +34,6 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
   function goToPrevious() {
     setActiveIndex((current) => (current - 1 + gallery.length) % gallery.length)
   }
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
 
   useEffect(() => {
     if (!isLightboxOpen) {
@@ -167,7 +162,7 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
         </div>
       </div>
 
-      {isMounted && isLightboxOpen
+      {isLightboxOpen && typeof document !== 'undefined'
         ? createPortal(
             <div
               aria-modal="true"

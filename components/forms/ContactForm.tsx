@@ -4,6 +4,7 @@ import { useActionState, useRef, useState } from 'react'
 import { submitContact } from '@/app/actions/contact'
 import Button from '@/components/ui/Button'
 import FormSuccess from './FormSuccess'
+import SpamTrap from './SpamTrap'
 
 type ContactFormProps = {
   initialType?: string
@@ -37,29 +38,49 @@ export default function ContactForm({ initialType = '', initialMessage = '' }: C
       onSubmit={() => setDismissedSuccess(false)}
       ref={formRef}
     >
+      <SpamTrap idPrefix="contact" />
       <div>
         <label className="formLabel" htmlFor="contact-name">
           Name *
         </label>
-        <input className="formInput" id="contact-name" name="name" placeholder="Your full name" required />
+        <input
+          autoComplete="name"
+          className="formInput"
+          id="contact-name"
+          maxLength={80}
+          name="name"
+          placeholder="Your full name"
+          required
+        />
       </div>
       <div>
         <label className="formLabel" htmlFor="contact-phone">
           Phone *
         </label>
         <input
+          autoComplete="tel"
           className="formInput"
           id="contact-phone"
+          inputMode="tel"
+          maxLength={20}
           name="phone"
           placeholder="+27 82 000 0000"
           required
+          type="tel"
         />
       </div>
       <div className="formFull">
         <label className="formLabel" htmlFor="contact-email">
           Email
         </label>
-        <input className="formInput" id="contact-email" name="email" placeholder="your@email.com" />
+        <input
+          autoComplete="email"
+          className="formInput"
+          id="contact-email"
+          name="email"
+          placeholder="your@email.com"
+          type="email"
+        />
       </div>
       <div className="formFull">
         <label className="formLabel" htmlFor="contact-type">
@@ -81,13 +102,15 @@ export default function ContactForm({ initialType = '', initialMessage = '' }: C
           className="formTextarea"
           defaultValue={initialMessage}
           id="contact-message"
+          maxLength={2000}
           name="message"
           placeholder="What would you like to know?"
           required
+          rows={6}
         />
       </div>
       {state?.success === false ? (
-        <p className="formFull" style={{ color: '#e05a6e', fontSize: 14 }}>
+        <p className="formFull" role="alert" style={{ color: '#e05a6e', fontSize: 14 }}>
           {state.error}
         </p>
       ) : null}

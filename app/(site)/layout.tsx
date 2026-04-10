@@ -1,3 +1,4 @@
+import OrganizationStructuredData from '@/components/seo/OrganizationStructuredData'
 import Footer from '@/components/layout/Footer'
 import Nav from '@/components/layout/Nav'
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat'
@@ -9,8 +10,12 @@ export default function SiteLayout({
 }>) {
   return (
     <>
+      <a className="skipLink" href="#main-content">
+        Skip to content
+      </a>
+      <OrganizationStructuredData />
       <Nav />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
       <WhatsAppFloat />
     </>

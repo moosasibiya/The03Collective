@@ -17,7 +17,11 @@ export default function FormSuccess({
   compact = false,
 }: FormSuccessProps) {
   return (
-    <div className={`${styles.success} ${compact ? styles.compact : ''}`.trim()}>
+    <div
+      aria-live="polite"
+      className={`${styles.success} ${compact ? styles.compact : ''}`.trim()}
+      role="status"
+    >
       <div className={styles.check}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <polyline points="20 6 9 17 4 12" />

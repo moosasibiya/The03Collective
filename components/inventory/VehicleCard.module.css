@@ -1,13 +1,70 @@
 .card {
+  --vehicle-card-bg: var(--card);
+  --vehicle-card-border: var(--border);
+  --vehicle-card-border-soft: var(--border-soft);
+  --vehicle-card-meta: var(--text-ghost);
+  --vehicle-card-title: var(--text);
+  --vehicle-card-subtitle: var(--text-muted);
+  --vehicle-card-amount: var(--text);
+  --vehicle-card-arrow-border: var(--border);
+  --vehicle-card-arrow-color: var(--text-ghost);
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid var(--vehicle-card-border);
   border-radius: var(--radius);
-  background: var(--card);
+  background: var(--vehicle-card-bg);
   transition:
     transform var(--transition),
     border-color var(--transition),
     box-shadow var(--transition);
+}
+
+.lightCard {
+  --vehicle-card-bg:
+    radial-gradient(circle at 82% 88%, rgba(var(--accent-rgb), 0.12), transparent 34%),
+    radial-gradient(circle at 18% 14%, rgba(var(--accent-rgb), 0.05), transparent 24%),
+    var(--light-bg-3);
+  --vehicle-card-border: rgba(17, 17, 17, 0.12);
+  --vehicle-card-border-soft: rgba(17, 17, 17, 0.08);
+  --vehicle-card-meta: #6d7280;
+  --vehicle-card-title: var(--light-text);
+  --vehicle-card-subtitle: var(--light-text-muted);
+  --vehicle-card-amount: var(--light-text);
+  --vehicle-card-arrow-border: rgba(17, 17, 17, 0.14);
+  --vehicle-card-arrow-color: rgba(17, 17, 17, 0.5);
+  box-shadow:
+    0 18px 40px rgba(var(--accent-rgb), 0.08),
+    0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.lightCard .footer {
+  margin: 20px -20px -20px;
+  padding: 18px 20px 20px;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  background: #101114;
+}
+
+.lightCard .amount {
+  color: #ffffff;
+}
+
+.lightCard .arrow {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.lightCard .meta {
+  font-size: 11px;
+}
+
+.lightCard .title {
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.lightCard .subtitle {
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .card:hover {
@@ -112,7 +169,7 @@
 .body {
   display: block;
   padding: 18px 20px 20px;
-  border-top: 1px solid var(--border-soft);
+  border-top: 1px solid var(--vehicle-card-border-soft);
 }
 
 .meta {
@@ -120,7 +177,7 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 8px;
-  color: var(--text-ghost);
+  color: var(--vehicle-card-meta);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -128,12 +185,12 @@
 }
 
 .separator {
-  color: var(--border);
+  color: var(--vehicle-card-border);
 }
 
 .title {
   margin-bottom: 4px;
-  color: var(--text);
+  color: var(--vehicle-card-title);
   font-family: var(--font-serif), Georgia, serif;
   font-size: 21px;
   font-weight: 400;
@@ -142,7 +199,7 @@
 
 .subtitle {
   margin-bottom: 16px;
-  color: var(--text-muted);
+  color: var(--vehicle-card-subtitle);
   font-size: 13px;
 }
 
@@ -151,7 +208,7 @@
   align-items: center;
   justify-content: space-between;
   padding-top: 14px;
-  border-top: 1px solid var(--border-soft);
+  border-top: 1px solid var(--vehicle-card-border-soft);
 }
 
 .price {
@@ -167,7 +224,7 @@
 }
 
 .amount {
-  color: var(--text);
+  color: var(--vehicle-card-amount);
   font-size: 21px;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -179,9 +236,9 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--vehicle-card-arrow-border);
   border-radius: 50%;
-  color: var(--text-ghost);
+  color: var(--vehicle-card-arrow-color);
   transition:
     border-color var(--transition),
     color var(--transition),

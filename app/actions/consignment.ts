@@ -1,10 +1,12 @@
 'use server'
 
+import { headers } from 'next/headers'
+import { isSpamSubmission } from '@/lib/form-security'
 import { prisma } from '@/lib/prisma'
 import { rateLimit } from '@/lib/rateLimit'
 import { resend } from '@/lib/resend'
 import { ConsignmentSchema } from '@/lib/validations'
-import { headers } from 'next/headers'
+import { escapeHtml } from '@/utils/escapeHtml'
 
 export type ActionResult =
   | { success: true }
@@ -15,6 +17,11 @@ export async function submitConsignment(
   formData: FormData
 ): Promise<ActionResult> {
   const raw = Object.fromEntries(formData)
+
+  if (isSpamSubmission(raw)) {
+    return { success: true }
+  }
+
   const parsed = ConsignmentSchema.safeParse(raw)
 
   if (!parsed.success) {
@@ -22,6 +29,13 @@ export async function submitConsignment(
   }
 
   const { name, phone, email, make, model, year, mileage, price, notes } = parsed.data
+  const safeName = escapeHtml(name)
+  const safePhone = escapeHtml(phone)
+  const safeEmail = escapeHtml(email || '-')
+  const safeVehicle = escapeHtml(`${make} ${model}${year ? ` (${year})` : ''}`)
+  const safeMileage = escapeHtml(mileage || '-')
+  const safePrice = escapeHtml(price ? `R ${price}` : '-')
+  const safeNotes = escapeHtml(notes || '-')
   const headersList = await headers()
   const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
   const userAgent = headersList.get('user-agent')
@@ -61,13 +75,13 @@ export async function submitConsignment(
           <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#A09890;margin-bottom:8px">The 03 Collective</p>
           <h1 style="font-size:28px;font-weight:300;margin:0 0 32px">New Consignment Lead</h1>
           <table style="width:100%;border-collapse:collapse">
-            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890;width:120px">Name</td><td style="padding:12px 0;font-size:15px">${name}</td></tr>
-            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Phone</td><td style="padding:12px 0;font-size:15px">${phone}</td></tr>
-            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Email</td><td style="padding:12px 0;font-size:15px">${email || '-'}</td></tr>
-            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Vehicle</td><td style="padding:12px 0;font-size:15px">${make} ${model} ${year ? `(${year})` : ''}</td></tr>
-            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Mileage</td><td style="padding:12px 0;font-size:15px">${mileage || '-'}</td></tr>
-            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Asking Price</td><td style="padding:12px 0;font-size:15px">${price ? `R ${price}` : '-'}</td></tr>
-            <tr><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Notes</td><td style="padding:12px 0;font-size:15px">${notes || '-'}</td></tr>
+            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890;width:120px">Name</td><td style="padding:12px 0;font-size:15px">${safeName}</td></tr>
+            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Phone</td><td style="padding:12px 0;font-size:15px">${safePhone}</td></tr>
+            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Email</td><td style="padding:12px 0;font-size:15px">${safeEmail}</td></tr>
+            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Vehicle</td><td style="padding:12px 0;font-size:15px">${safeVehicle}</td></tr>
+            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Mileage</td><td style="padding:12px 0;font-size:15px">${safeMileage}</td></tr>
+            <tr style="border-bottom:1px solid #EDE8DF"><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Asking Price</td><td style="padding:12px 0;font-size:15px">${safePrice}</td></tr>
+            <tr><td style="padding:12px 0;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#A09890">Notes</td><td style="padding:12px 0;font-size:15px">${safeNotes}</td></tr>
           </table>
         </div>
       `,
@@ -83,11 +97,11 @@ export async function submitConsignment(
             <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#A09890;margin-bottom:8px">The 03 Collective</p>
             <h1 style="font-size:28px;font-weight:300;margin:0 0 16px">We'll be in touch.</h1>
             <p style="font-size:15px;color:#6B6560;line-height:1.7">
-              Hi ${name}, we've received your submission for the <strong style="color:#1C1A17">${make} ${model}</strong>
+              Hi ${safeName}, we've received your submission for the <strong style="color:#1C1A17">${safeVehicle}</strong>
               and will assess it and come back to you within 24 hours.
             </p>
             <div style="margin-top:40px;padding-top:24px;border-top:1px solid #EDE8DF;font-size:12px;color:#A09890">
-              © The 03 Collective - Johannesburg, South Africa
+              &copy; The 03 Collective - Johannesburg, South Africa
             </div>
           </div>
         `,

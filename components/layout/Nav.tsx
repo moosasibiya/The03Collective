@@ -55,6 +55,9 @@ export default function Nav() {
           </div>
 
           <button
+            aria-controls="mobile-menu"
+            aria-expanded={open}
+            aria-haspopup="dialog"
             aria-label="Open menu"
             className={styles.hamburger}
             onClick={() => setOpen(true)}

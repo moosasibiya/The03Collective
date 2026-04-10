@@ -80,7 +80,27 @@ export const vehicle = defineType({
           fields: [defineField({ name: 'alt', title: 'Alt text', type: 'string' })],
         },
       ],
-      validation: (rule) => rule.min(1).error('At least one photo is required'),
+      validation: (rule) => [
+        rule.min(1).error('At least one photo is required'),
+        rule
+          .custom((images) => {
+            if (!Array.isArray(images)) {
+              return true
+            }
+
+            const missingAlt = images.some((image) => {
+              if (!image || typeof image !== 'object') {
+                return false
+              }
+
+              const alt = 'alt' in image ? image.alt : undefined
+              return typeof alt !== 'string' || alt.trim().length === 0
+            })
+
+            return missingAlt ? 'Add alt text to each photo for accessibility and SEO.' : true
+          })
+          .warning(),
+      ],
     }),
     defineField({
       name: 'description',
@@ -102,7 +122,7 @@ export const vehicle = defineType({
         defineField({ name: 'power', title: 'Power', type: 'string' }),
         defineField({ name: 'torque', title: 'Torque', type: 'string' }),
         defineField({ name: 'drive', title: 'Drivetrain', type: 'string' }),
-        defineField({ name: 'acceleration', title: '0–100 km/h', type: 'string' }),
+        defineField({ name: 'acceleration', title: '0-100 km/h', type: 'string' }),
       ],
     }),
     defineField({ name: 'conditionNotes', title: 'Condition Notes', type: 'text' }),

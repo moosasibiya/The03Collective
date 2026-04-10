@@ -6,6 +6,7 @@ import Button from '@/components/ui/Button'
 import { SITE_CONTACT } from '@/lib/site-content'
 import { buildWhatsApp } from '@/utils/format'
 import FormSuccess from './FormSuccess'
+import SpamTrap from './SpamTrap'
 
 export default function ConsignmentForm() {
   const formRef = useRef<HTMLFormElement>(null)
@@ -34,59 +35,114 @@ export default function ConsignmentForm() {
       onSubmit={() => setDismissedSuccess(false)}
       ref={formRef}
     >
+      <SpamTrap idPrefix="consign" />
       <div>
         <label className="formLabel" htmlFor="consign-name">
           Your Name *
         </label>
-        <input className="formInput" id="consign-name" name="name" placeholder="Full name" required />
+        <input
+          autoComplete="name"
+          className="formInput"
+          id="consign-name"
+          maxLength={80}
+          name="name"
+          placeholder="Full name"
+          required
+        />
       </div>
       <div>
         <label className="formLabel" htmlFor="consign-phone">
           WhatsApp / Phone *
         </label>
         <input
+          autoComplete="tel"
           className="formInput"
           id="consign-phone"
+          inputMode="tel"
+          maxLength={20}
           name="phone"
           placeholder="+27 82 000 0000"
           required
+          type="tel"
         />
       </div>
       <div className="formFull">
         <label className="formLabel" htmlFor="consign-email">
           Email Address
         </label>
-        <input className="formInput" id="consign-email" name="email" placeholder="your@email.com" />
+        <input
+          autoComplete="email"
+          className="formInput"
+          id="consign-email"
+          name="email"
+          placeholder="your@email.com"
+          type="email"
+        />
       </div>
       <div>
         <label className="formLabel" htmlFor="consign-make">
           Vehicle Make *
         </label>
-        <input className="formInput" id="consign-make" name="make" placeholder="e.g. BMW, Porsche" required />
+        <input
+          className="formInput"
+          id="consign-make"
+          maxLength={40}
+          name="make"
+          placeholder="e.g. BMW, Porsche"
+          required
+        />
       </div>
       <div>
         <label className="formLabel" htmlFor="consign-model">
           Model *
         </label>
-        <input className="formInput" id="consign-model" name="model" placeholder="e.g. M3 Competition" required />
+        <input
+          className="formInput"
+          id="consign-model"
+          maxLength={60}
+          name="model"
+          placeholder="e.g. M3 Competition"
+          required
+        />
       </div>
       <div>
         <label className="formLabel" htmlFor="consign-year">
           Year
         </label>
-        <input className="formInput" id="consign-year" name="year" placeholder="e.g. 2021" />
+        <input
+          className="formInput"
+          id="consign-year"
+          inputMode="numeric"
+          maxLength={4}
+          name="year"
+          placeholder="e.g. 2021"
+        />
       </div>
       <div>
         <label className="formLabel" htmlFor="consign-mileage">
           Mileage
         </label>
-        <input className="formInput" id="consign-mileage" name="mileage" placeholder="e.g. 42 000 km" />
+        <input
+          className="formInput"
+          id="consign-mileage"
+          inputMode="numeric"
+          maxLength={20}
+          name="mileage"
+          placeholder="e.g. 42 000 km"
+        />
       </div>
       <div className="formFull">
         <label className="formLabel" htmlFor="consign-price">
           Asking Price (R)
         </label>
-        <input className="formInput" id="consign-price" name="price" placeholder="Optional" />
+        <input
+          className="formInput"
+          id="consign-price"
+          inputMode="numeric"
+          maxLength={20}
+          name="price"
+          placeholder="Optional"
+        />
       </div>
       <div className="formFull">
         <label className="formLabel" htmlFor="consign-notes">
@@ -95,15 +151,17 @@ export default function ConsignmentForm() {
         <textarea
           className="formTextarea"
           id="consign-notes"
+          maxLength={2000}
           name="notes"
           placeholder="Service history, modifications, any relevant details..."
+          rows={6}
         />
       </div>
       <div className="formDivider formFull">
         <span>or</span>
       </div>
       {state?.success === false ? (
-        <p className="formFull" style={{ color: '#e05a6e', fontSize: 14 }}>
+        <p className="formFull" role="alert" style={{ color: '#e05a6e', fontSize: 14 }}>
           {state.error}
         </p>
       ) : null}
