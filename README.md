@@ -58,6 +58,8 @@ These must be set before production deploys:
 - `SANITY_API_READ_TOKEN`
 - `DATABASE_URL`
 - `DIRECT_URL`
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
 - `RESEND_API_KEY`
 - `BUSINESS_EMAIL`
 - `NEXT_PUBLIC_BUSINESS_WHATSAPP`
@@ -103,9 +105,10 @@ Vercel is the intended deployment target.
 3. Add all required production environment variables.
 4. Connect both `the03collective.co.za` and `www.the03collective.co.za`.
 5. Set `www.the03collective.co.za` as the primary domain.
-6. Run `pnpm db:push` against the production database.
-7. Submit test forms for contact, enquiry, and consignment on the live site.
-8. Confirm email delivery in Resend and records being written to the database.
+6. Provision Upstash Redis and add `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
+7. Run `pnpm db:push` against the production database.
+8. Submit test forms for contact, enquiry, and consignment on the live site.
+9. Confirm email delivery in Resend and records being written to the database.
 
 ## Sanity Studio
 
