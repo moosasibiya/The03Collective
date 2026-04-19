@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import * as Sentry from '@sentry/nextjs'
 import { SITE_URL } from '@/lib/site-config'
 import { sanityClient } from '@/sanity/lib/client'
 import { ALL_VEHICLE_SLUGS_QUERY } from '@/sanity/lib/queries'
@@ -12,7 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (sanityClient) {
       vehicleSlugs = await sanityClient.fetch<{ slug: string }[]>(ALL_VEHICLE_SLUGS_QUERY)
     }
-  } catch {
+  } catch (error) {
+    Sentry.captureException(error)
     vehicleSlugs = []
   }
 

@@ -1,6 +1,7 @@
 'use server'
 
 import { headers } from 'next/headers'
+import * as Sentry from '@sentry/nextjs'
 import { isSpamSubmission } from '@/lib/form-security'
 import { prisma } from '@/lib/prisma'
 import { rateLimit } from '@/lib/rateLimit'
@@ -133,6 +134,7 @@ export async function submitEnquiry(
 
     return { success: true }
   } catch (err) {
+    Sentry.captureException(err)
     console.error('[submitEnquiry]', err)
     return {
       success: false,
