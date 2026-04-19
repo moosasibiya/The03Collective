@@ -40,15 +40,15 @@ export async function submitConsignment(
   const ip = headersList.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
   const userAgent = headersList.get('user-agent')
 
-  const { allowed } = rateLimit(ip)
-  if (!allowed) {
-    return {
-      success: false,
-      error: 'Too many submissions. Please wait a moment and try again.',
-    }
-  }
-
   try {
+    const { allowed } = await rateLimit(ip)
+    if (!allowed) {
+      return {
+        success: false,
+        error: 'Too many submissions. Please wait a moment and try again.',
+      }
+    }
+
     await prisma.consignmentLead.create({
       data: {
         name,

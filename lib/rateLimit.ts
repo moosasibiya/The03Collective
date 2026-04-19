@@ -1,24 +1,59 @@
-// Simple in-memory rate limiter
-// For production, swap with @upstash/ratelimit + Vercel KV
+import * as Sentry from '@sentry/nextjs'
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
 
-const requests = new Map<string, { count: number; resetAt: number }>()
-
-const WINDOW_MS = 60 * 1000
+const WINDOW = '1 m'
 const MAX_PER_IP = 5
+const PREFIX = 'the03collective:rate-limit'
 
-export function rateLimit(ip: string): { allowed: boolean; remaining: number } {
-  const now = Date.now()
-  const record = requests.get(ip)
+type RateLimitResult = {
+  allowed: boolean
+  remaining: number
+  reset: number
+}
 
-  if (!record || now > record.resetAt) {
-    requests.set(ip, { count: 1, resetAt: now + WINDOW_MS })
-    return { allowed: true, remaining: MAX_PER_IP - 1 }
+let ratelimiter: ReturnType<typeof createRatelimiter> | null = null
+
+function getRedisConfig() {
+  const url = process.env.UPSTASH_REDIS_REST_URL
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN
+
+  if (!url || !token) {
+    throw new Error('Upstash Redis environment variables are not configured')
   }
 
-  if (record.count >= MAX_PER_IP) {
-    return { allowed: false, remaining: 0 }
+  return { url, token }
+}
+
+function createRatelimiter() {
+  const { url, token } = getRedisConfig()
+
+  return new Ratelimit({
+    redis: new Redis({ url, token }),
+    limiter: Ratelimit.slidingWindow(MAX_PER_IP, WINDOW),
+    prefix: PREFIX,
+  })
+}
+
+function getRatelimiter() {
+  if (!ratelimiter) {
+    ratelimiter = createRatelimiter()
   }
 
-  record.count += 1
-  return { allowed: true, remaining: MAX_PER_IP - record.count }
+  return ratelimiter
+}
+
+export async function rateLimit(ip: string): Promise<RateLimitResult> {
+  try {
+    const result = await getRatelimiter().limit(ip)
+
+    return {
+      allowed: result.success,
+      remaining: result.remaining,
+      reset: result.reset,
+    }
+  } catch (error) {
+    Sentry.captureException(error)
+    throw error
+  }
 }
