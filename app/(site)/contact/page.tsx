@@ -1,4 +1,14 @@
 import ContactScreen from '@/components/screens/ContactScreen'
+import { buildMetadata } from '@/utils/metadata'
+
+export const metadata = buildMetadata({
+  title: 'Contact',
+  description:
+    'Contact The 03 Collective for buying, selling, consignment, or general automotive enquiries.',
+  alternates: {
+    canonical: '/contact',
+  },
+})
 
 type ContactPageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>
