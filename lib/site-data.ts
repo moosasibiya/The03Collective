@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import * as Sentry from '@sentry/nextjs'
 import {
   ALL_VEHICLE_SLUGS_QUERY,
   ALL_VEHICLES_QUERY,
@@ -8,7 +9,6 @@ import {
   VEHICLE_BY_SLUG_QUERY,
 } from '@/lib/sanity.queries'
 import { getSanityClient } from '@/lib/sanity'
-import { FALLBACK_TESTIMONIALS, FALLBACK_VEHICLES } from '@/lib/site-content'
 import type { Testimonial, Vehicle } from '@/types'
 
 const VISUAL_THEMES = [
@@ -25,26 +25,21 @@ const VISUAL_THEMES = [
 
 type QueryParams = Record<string, string | number | boolean | undefined>
 
-async function fetchSanity<T>(query: string, params?: QueryParams): Promise<T | null> {
+async function fetchSanity<T>(query: string, params?: QueryParams): Promise<T> {
   const client = getSanityClient()
 
   if (!client) {
-    return null
+    const error = new Error('Sanity client is not configured')
+    Sentry.captureException(error)
+    throw error
   }
 
   try {
     return await client.fetch<T>(query, params ?? {})
   } catch (error) {
-    console.error('[site-data]', error)
-    return null
+    Sentry.captureException(error)
+    throw error
   }
-}
-
-function matchesFallback(target: Vehicle, fallback: Vehicle) {
-  return (
-    target.slug.current === fallback.slug.current ||
-    `${target.year}-${target.make}-${target.model}` === `${fallback.year}-${fallback.make}-${fallback.model}`
-  )
 }
 
 function buildTags(vehicle: Vehicle) {
@@ -57,24 +52,22 @@ function buildTags(vehicle: Vehicle) {
 }
 
 function normalizeVehicle(vehicle: Vehicle): Vehicle {
-  const fallback = FALLBACK_VEHICLES.find((candidate) => matchesFallback(vehicle, candidate))
-  const images = vehicle.images?.length ? vehicle.images : fallback?.images
-  const mainImage = vehicle.mainImage ?? images?.[0] ?? fallback?.mainImage
+  const images =
+    vehicle.images?.length
+      ? vehicle.images
+      : vehicle.mainImage
+        ? [vehicle.mainImage]
+        : undefined
+  const mainImage = vehicle.mainImage ?? images?.[0]
 
   return {
-    ...fallback,
     ...vehicle,
     images,
     mainImage,
-    descriptionHtml: vehicle.descriptionHtml ?? fallback?.descriptionHtml,
-    features: vehicle.features?.length ? vehicle.features : fallback?.features,
-    specs: { ...fallback?.specs, ...vehicle.specs },
-    conditionNotes: vehicle.conditionNotes ?? fallback?.conditionNotes,
     whatsappMessage:
       vehicle.whatsappMessage ??
-      fallback?.whatsappMessage ??
       `Hi, I'm interested in the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`,
-    tags: vehicle.tags?.length ? vehicle.tags : fallback?.tags ?? buildTags(vehicle),
+    tags: vehicle.tags?.length ? vehicle.tags : buildTags(vehicle),
   }
 }
 
@@ -86,34 +79,24 @@ export function getVehicleThemeStyle(seed: string | number) {
 
 export const getAllVehicles = cache(async () => {
   const vehicles = await fetchSanity<Vehicle[]>(ALL_VEHICLES_QUERY)
-
-  if (!vehicles?.length) {
-    return FALLBACK_VEHICLES
-  }
-
   return vehicles.map(normalizeVehicle)
 })
 
 export const getFeaturedVehicles = cache(async () => {
   const vehicles = await fetchSanity<Vehicle[]>(FEATURED_VEHICLES_QUERY)
-
-  if (!vehicles?.length) {
-    return FALLBACK_VEHICLES.filter((vehicle) => vehicle.status !== 'sold').slice(0, 3)
-  }
-
   return vehicles.map(normalizeVehicle)
 })
 
 export const getTestimonials = cache(async () => {
   const testimonials = await fetchSanity<Testimonial[]>(TESTIMONIALS_QUERY)
-  return testimonials?.length ? testimonials : FALLBACK_TESTIMONIALS
+  return testimonials
 })
 
 export async function getVehicleBySlug(slug: string) {
   const vehicle = await fetchSanity<Vehicle>(VEHICLE_BY_SLUG_QUERY, { slug })
 
   if (!vehicle) {
-    return FALLBACK_VEHICLES.find((entry) => entry.slug.current === slug) ?? null
+    return null
   }
 
   return normalizeVehicle(vehicle)
@@ -121,22 +104,10 @@ export async function getVehicleBySlug(slug: string) {
 
 export async function getRelatedVehicles(make: string, slug: string) {
   const vehicles = await fetchSanity<Vehicle[]>(RELATED_VEHICLES_QUERY, { make, slug })
-
-  if (!vehicles?.length) {
-    return FALLBACK_VEHICLES.filter(
-      (vehicle) => vehicle.slug.current !== slug && vehicle.make === make && vehicle.status !== 'sold'
-    ).slice(0, 3)
-  }
-
   return vehicles.map(normalizeVehicle)
 }
 
 export async function getAllVehicleSlugs() {
   const slugs = await fetchSanity<Array<{ slug: string }>>(ALL_VEHICLE_SLUGS_QUERY)
-
-  if (!slugs?.length) {
-    return FALLBACK_VEHICLES.map((vehicle) => ({ slug: vehicle.slug.current }))
-  }
-
   return slugs
 }
