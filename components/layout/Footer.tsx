@@ -15,14 +15,24 @@ export default function Footer() {
             <span className={styles.logoWord}>Collective</span>
           </div>
           <p className={styles.tagline}>
-            A curated automotive collective for buyers who care about quality, and sellers who
-            care about results.
+            A curated automotive collective for buyers who care about quality, and sellers who care
+            about results.
           </p>
           <div className={styles.social}>
-            <a aria-label="Instagram" href={SITE_CONTACT.instagramUrl} rel="noreferrer" target="_blank">
+            <a
+              aria-label="Instagram"
+              href={SITE_CONTACT.instagramUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
               IG
             </a>
-            <a aria-label="Facebook" href={SITE_CONTACT.facebookUrl} rel="noreferrer" target="_blank">
+            <a
+              aria-label="Facebook"
+              href={SITE_CONTACT.facebookUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
               FB
             </a>
             <a aria-label="TikTok" href={SITE_CONTACT.tiktokUrl} rel="noreferrer" target="_blank">
@@ -67,7 +77,10 @@ export default function Footer() {
         <div>
           <span className={styles.columnTitle}>Contact</span>
           <div className={styles.contactItem}>
-            <span>{SITE_CONTACT.phoneDisplay}</span>
+            <a href={SITE_CONTACT.phoneHref}>{SITE_CONTACT.phoneDisplay}</a>
+          </div>
+          <div className={styles.contactItem}>
+            <a href={SITE_CONTACT.emailHref}>{SITE_CONTACT.email}</a>
           </div>
           <div className={styles.contactItem}>
             <span>{SITE_CONTACT.location[0]}</span>

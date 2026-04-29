@@ -51,11 +51,7 @@ export default function MobileMenu({ open, onClose, pathname }: MobileMenuProps)
   }, [open, onClose])
 
   return (
-    <div
-      aria-hidden={!open}
-      className={cn(styles.menu, open && styles.open)}
-      onClick={onClose}
-    >
+    <div aria-hidden={!open} className={cn(styles.menu, open && styles.open)} onClick={onClose}>
       <div
         aria-label="Site navigation"
         aria-modal="true"

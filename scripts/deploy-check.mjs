@@ -1,3 +1,43 @@
+import { existsSync, readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+
+function loadEnvFile(fileName) {
+  const filePath = resolve(process.cwd(), fileName)
+
+  if (!existsSync(filePath)) {
+    return
+  }
+
+  for (const line of readFileSync(filePath, 'utf8').split(/\r?\n/)) {
+    const trimmed = line.trim()
+
+    if (!trimmed || trimmed.startsWith('#')) {
+      continue
+    }
+
+    const equalsIndex = trimmed.indexOf('=')
+
+    if (equalsIndex === -1) {
+      continue
+    }
+
+    const name = trimmed.slice(0, equalsIndex).trim()
+    let value = trimmed.slice(equalsIndex + 1).trim()
+
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
+      value = value.slice(1, -1)
+    }
+
+    process.env[name] = value
+  }
+}
+
+loadEnvFile('.env')
+loadEnvFile('.env.local')
+
 const required = [
   'NEXT_PUBLIC_SANITY_PROJECT_ID',
   'NEXT_PUBLIC_SANITY_DATASET',

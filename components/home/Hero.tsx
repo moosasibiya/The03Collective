@@ -59,7 +59,9 @@ export default function Hero() {
       <div className={styles.overlay} />
       <div className={`container ${styles.content}`}>
         <RevealWrapper className={styles.copy}>
-          <span className={`label ${styles.label}`}>The 03 Collective - Johannesburg, South Africa</span>
+          <span className={`label ${styles.label}`}>
+            The 03 Collective - Johannesburg, South Africa
+          </span>
           <h1 className={styles.title}>
             Every Car
             <br />

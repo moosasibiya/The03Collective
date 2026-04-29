@@ -40,10 +40,19 @@
 }
 
 .detail {
+  display: block;
   margin-bottom: 12px;
   color: var(--light-text-muted);
   font-size: 14px;
   line-height: 1.6;
+}
+
+a.detail {
+  transition: color var(--transition);
+}
+
+a.detail:hover {
+  color: var(--light-text);
 }
 
 .whatsAppButton {

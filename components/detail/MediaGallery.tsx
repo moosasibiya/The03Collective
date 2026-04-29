@@ -96,7 +96,9 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
                 ) : (
                   <div
                     className={styles.visual}
-                    style={{ background: getVehicleThemeStyle(`${vehicle.slug.current}-${activeIndex}`) }}
+                    style={{
+                      background: getVehicleThemeStyle(`${vehicle.slug.current}-${activeIndex}`),
+                    }}
                   />
                 )}
                 <span className={styles.expandHint}>View larger</span>
@@ -154,7 +156,9 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
               ) : (
                 <div
                   className={styles.thumbVisual}
-                  style={{ background: getVehicleThemeStyle(`${vehicle.slug.current}-thumb-${index}`) }}
+                  style={{
+                    background: getVehicleThemeStyle(`${vehicle.slug.current}-thumb-${index}`),
+                  }}
                 />
               )}
             </button>
@@ -215,7 +219,11 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
                   ) : (
                     <div
                       className={styles.visual}
-                      style={{ background: getVehicleThemeStyle(`${vehicle.slug.current}-lightbox-${activeIndex}`) }}
+                      style={{
+                        background: getVehicleThemeStyle(
+                          `${vehicle.slug.current}-lightbox-${activeIndex}`
+                        ),
+                      }}
                     />
                   )}
 
@@ -249,7 +257,11 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
                   <div className={styles.lightboxThumbs}>
                     {gallery.map((item, index) => (
                       <button
-                        className={cn(styles.thumb, styles.lightboxThumb, index === activeIndex && styles.active)}
+                        className={cn(
+                          styles.thumb,
+                          styles.lightboxThumb,
+                          index === activeIndex && styles.active
+                        )}
                         key={`${vehicle._id}-lightbox-${index}`}
                         onClick={() => setActiveIndex(index)}
                         type="button"
@@ -266,7 +278,9 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
                           <div
                             className={styles.thumbVisual}
                             style={{
-                              background: getVehicleThemeStyle(`${vehicle.slug.current}-lightbox-thumb-${index}`),
+                              background: getVehicleThemeStyle(
+                                `${vehicle.slug.current}-lightbox-thumb-${index}`
+                              ),
                             }}
                           />
                         )}

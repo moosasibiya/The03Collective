@@ -12,7 +12,10 @@ const availabilityMap: Record<Vehicle['status'], string> = {
 }
 
 function stripHtml(html: string) {
-  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+  return html
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 function buildDescription(vehicle: Vehicle) {

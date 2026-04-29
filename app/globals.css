@@ -285,7 +285,11 @@ main {
   border: 1px solid rgba(var(--accent-rgb), 0.22);
   border-radius: 50%;
   background:
-    radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-rgb), 0.03) 68%),
+    radial-gradient(
+      circle at center,
+      rgba(var(--accent-rgb), 0.12),
+      rgba(var(--accent-rgb), 0.03) 68%
+    ),
     var(--bg);
   color: var(--accent);
   font-family: var(--font-serif), Georgia, serif;
@@ -295,7 +299,11 @@ main {
 
 .lightSection .stepNumber {
   background:
-    radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-rgb), 0.03) 68%),
+    radial-gradient(
+      circle at center,
+      rgba(var(--accent-rgb), 0.12),
+      rgba(var(--accent-rgb), 0.03) 68%
+    ),
     var(--light-bg-3);
 }
 
@@ -322,9 +330,7 @@ main {
   padding: 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background:
-    linear-gradient(180deg, rgba(var(--accent-rgb), 0.05), transparent 42%),
-    var(--card);
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.05), transparent 42%), var(--card);
   box-shadow: var(--shadow);
 }
 

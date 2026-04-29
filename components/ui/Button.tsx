@@ -25,13 +25,7 @@ type NativeButtonProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'>
 
 function getClassName(variant: Variant, size: Size, block: boolean, className?: string) {
-  return cn(
-    styles.button,
-    styles[variant],
-    styles[size],
-    block && styles.block,
-    className
-  )
+  return cn(styles.button, styles[variant], styles[size], block && styles.block, className)
 }
 
 export default function Button(props: LinkProps | NativeButtonProps) {
@@ -48,7 +42,12 @@ export default function Button(props: LinkProps | NativeButtonProps) {
     } = props
     const classes = getClassName(variant, size, block, className)
 
-    if (external || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+    if (
+      external ||
+      href.startsWith('http') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:')
+    ) {
       return (
         <a
           className={classes}
@@ -68,14 +67,7 @@ export default function Button(props: LinkProps | NativeButtonProps) {
     )
   }
 
-  const {
-    variant = 'primary',
-    size = 'md',
-    block = false,
-    className,
-    children,
-    ...rest
-  } = props
+  const { variant = 'primary', size = 'md', block = false, className, children, ...rest } = props
   const classes = getClassName(variant, size, block, className)
 
   return (

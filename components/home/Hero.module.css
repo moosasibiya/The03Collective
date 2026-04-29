@@ -51,7 +51,12 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(160deg, rgba(18, 18, 20, 0.28) 0%, rgba(9, 9, 11, 0.16) 42%, rgba(10, 10, 11, 0.42) 100%);
+  background: linear-gradient(
+    160deg,
+    rgba(18, 18, 20, 0.28) 0%,
+    rgba(9, 9, 11, 0.16) 42%,
+    rgba(10, 10, 11, 0.42) 100%
+  );
 }
 
 .scene::before {

@@ -52,12 +52,11 @@ function buildTags(vehicle: Vehicle) {
 }
 
 function normalizeVehicle(vehicle: Vehicle): Vehicle {
-  const images =
-    vehicle.images?.length
-      ? vehicle.images
-      : vehicle.mainImage
-        ? [vehicle.mainImage]
-        : undefined
+  const images = vehicle.images?.length
+    ? vehicle.images
+    : vehicle.mainImage
+      ? [vehicle.mainImage]
+      : undefined
   const mainImage = vehicle.mainImage ?? images?.[0]
 
   return {

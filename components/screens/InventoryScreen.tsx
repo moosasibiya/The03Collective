@@ -16,10 +16,7 @@ export default function InventoryScreen({ vehicles, initialFilters }: InventoryS
   return (
     <>
       <PageHeader
-        breadcrumbs={[
-          { href: '/', label: 'Home' },
-          { label: 'Inventory' },
-        ]}
+        breadcrumbs={[{ href: '/', label: 'Home' }, { label: 'Inventory' }]}
         description="Every vehicle here is hand-picked, professionally presented, and verified."
         label="Premium Selection"
         title={

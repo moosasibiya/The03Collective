@@ -14,9 +14,7 @@ const optionalEmail = z.preprocess(
 
 const saPhone = z.preprocess(
   trimValue,
-  z
-    .string()
-    .regex(/^(\+27|27|0)[6-8][0-9]{8}$/, 'Please enter a valid South African mobile number')
+  z.string().regex(/^(\+27|27|0)[6-8][0-9]{8}$/, 'Please enter a valid South African mobile number')
 )
 
 export const EnquirySchema = z.object({
@@ -47,10 +45,7 @@ export const ContactSchema = z.object({
   type: optionalText(80),
   message: z.preprocess(
     trimValue,
-    z
-      .string()
-      .min(10, 'Please enter a message')
-      .max(2000, 'Message must be under 2000 characters')
+    z.string().min(10, 'Please enter a message').max(2000, 'Message must be under 2000 characters')
   ),
 })
 

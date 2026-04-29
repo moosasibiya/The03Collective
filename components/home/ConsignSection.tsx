@@ -22,7 +22,9 @@ export default function ConsignSection() {
               <br />
               Than a <em>Classifieds Listing.</em>
             </h2>
-            <p className="sectionSub">Most vehicles are undersold because they are poorly presented. We fix that.</p>
+            <p className="sectionSub">
+              Most vehicles are undersold because they are poorly presented. We fix that.
+            </p>
 
             <ul className="benefits" style={{ marginTop: 28, marginBottom: 36 }}>
               {HOME_CONSIGN_BENEFITS.map((benefit) => (

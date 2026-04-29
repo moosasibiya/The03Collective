@@ -30,7 +30,13 @@ export default function FormSuccess({
       <h3>{title}</h3>
       <p>{description}</p>
       {actionLabel && onReset ? (
-        <Button className={styles.button} onClick={onReset} size="sm" type="button" variant="outline">
+        <Button
+          className={styles.button}
+          onClick={onReset}
+          size="sm"
+          type="button"
+          variant="outline"
+        >
           {actionLabel}
         </Button>
       ) : null}

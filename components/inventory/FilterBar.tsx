@@ -33,8 +33,12 @@ export default function FilterBar({ initialFilters, vehicles }: FilterBarProps) 
     trans: initialFilters?.trans || '',
   })
 
-  const makes = [...new Set(vehicles.map((vehicle) => vehicle.make))].sort((a, b) => a.localeCompare(b))
-  const transmissions = [...new Set(vehicles.map((vehicle) => vehicle.transmission).filter(Boolean))] as string[]
+  const makes = [...new Set(vehicles.map((vehicle) => vehicle.make))].sort((a, b) =>
+    a.localeCompare(b)
+  )
+  const transmissions = [
+    ...new Set(vehicles.map((vehicle) => vehicle.transmission).filter(Boolean)),
+  ] as string[]
 
   const filtered = vehicles.filter((vehicle) => {
     if (filters.make && vehicle.make !== filters.make) return false
@@ -56,7 +60,9 @@ export default function FilterBar({ initialFilters, vehicles }: FilterBarProps) 
           <div className={styles.inner}>
             <select
               className={styles.select}
-              onChange={(event) => setFilters((current) => ({ ...current, make: event.target.value }))}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, make: event.target.value }))
+              }
               value={filters.make}
             >
               <option value="">All Makes</option>
@@ -69,7 +75,9 @@ export default function FilterBar({ initialFilters, vehicles }: FilterBarProps) 
 
             <select
               className={styles.select}
-              onChange={(event) => setFilters((current) => ({ ...current, status: event.target.value }))}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, status: event.target.value }))
+              }
               value={filters.status}
             >
               <option value="">All Status</option>
@@ -80,7 +88,9 @@ export default function FilterBar({ initialFilters, vehicles }: FilterBarProps) 
 
             <select
               className={styles.select}
-              onChange={(event) => setFilters((current) => ({ ...current, price: event.target.value }))}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, price: event.target.value }))
+              }
               value={filters.price}
             >
               {priceRanges.map((range) => (
@@ -92,7 +102,9 @@ export default function FilterBar({ initialFilters, vehicles }: FilterBarProps) 
 
             <select
               className={styles.select}
-              onChange={(event) => setFilters((current) => ({ ...current, trans: event.target.value }))}
+              onChange={(event) =>
+                setFilters((current) => ({ ...current, trans: event.target.value }))
+              }
               value={filters.trans}
             >
               <option value="">Transmission</option>

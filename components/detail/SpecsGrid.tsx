@@ -7,9 +7,7 @@ type SpecsGridProps = {
 }
 
 const iconMap = {
-  power: (
-    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-  ),
+  power: <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />,
   torque: (
     <>
       <circle cx="12" cy="12" r="10" />
@@ -24,7 +22,9 @@ const iconMap = {
   ),
   acceleration: <path d="M5 12h14M12 5l7 7-7 7" />,
   mileage: <path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 4v4l3 2" />,
-  fuel: <path d="M3 22V6a2 2 0 012-2h10a2 2 0 012 2v1h1a2 2 0 012 2v3a2 2 0 01-2 2h-1v6a2 2 0 01-2 2H5a2 2 0 01-2-2z" />,
+  fuel: (
+    <path d="M3 22V6a2 2 0 012-2h10a2 2 0 012 2v1h1a2 2 0 012 2v3a2 2 0 01-2 2h-1v6a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+  ),
 } as const
 
 const labels = {

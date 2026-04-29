@@ -3,11 +3,13 @@ import type { Testimonial, Vehicle } from '@/types'
 export const SITE_CONTACT = {
   whatsappNumber: process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '27820000000',
   phoneDisplay: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 82 000 0000',
+  phoneHref: `tel:${(process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 82 000 0000').replace(/[^\d+]/g, '')}`,
   email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'hello@the03collective.co.za',
+  emailHref: `mailto:${process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'hello@the03collective.co.za'}`,
   instagram: process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || '@the03collective',
-  instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://www.instagram.com/the03collective',
-  facebookUrl:
-    process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/the03collective',
+  instagramUrl:
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://www.instagram.com/the03collective',
+  facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/the03collective',
   tiktokUrl: process.env.NEXT_PUBLIC_TIKTOK_URL || 'https://www.tiktok.com/@the03collective',
   location: ['Johannesburg, Gauteng', 'South Africa'],
   hours: [
@@ -138,7 +140,7 @@ export const ABOUT_PILLARS = [
   {
     number: '01',
     title: 'Selection',
-    body: "We do not list every car that comes our way. Each vehicle is assessed against our standard before it earns a place in our inventory. If it does not belong here, it does not appear here. This is how we protect the trust of every buyer who visits us.",
+    body: 'We do not list every car that comes our way. Each vehicle is assessed against our standard before it earns a place in our inventory. If it does not belong here, it does not appear here. This is how we protect the trust of every buyer who visits us.',
   },
   {
     number: '02',
@@ -156,7 +158,7 @@ export const ABOUT_STORY = [
   'The 03 Collective grew from a frustration shared by every enthusiast who has ever bought or sold a quality car in South Africa: the experience rarely matches the vehicle.',
   'We watched excellent cars go to market with phone photos and generic descriptions. We watched sellers accept less than their car was worth because the listing did nothing to communicate its value. We watched buyers wade through noise, sifting for honesty.',
   'So we built something different. A platform that takes presentation seriously. A team that knows what it is looking at. A process built around the people involved, not just the transaction at the end.',
-  "The 03 Collective is small by design. We do not aim to list every car in South Africa. We aim to list the right ones - and to make sure every buyer and seller who comes to us leaves with exactly what they came for.",
+  'The 03 Collective is small by design. We do not aim to list every car in South Africa. We aim to list the right ones - and to make sure every buyer and seller who comes to us leaves with exactly what they came for.',
 ]
 
 export const TEAM_MEMBERS = [
@@ -286,8 +288,7 @@ export const FALLBACK_VEHICLES: Vehicle[] = [
     },
     conditionNotes:
       'As-new condition. No marks, no issues. Full Porsche service history. Under Porsche Approved Warranty until 2026.',
-    whatsappMessage:
-      "Hi, I'd like to join the waiting list for the 2023 Porsche 911 Carrera S.",
+    whatsappMessage: "Hi, I'd like to join the waiting list for the 2023 Porsche 911 Carrera S.",
     tags: ['Sport Chrono', '992 Gen', 'Porsche APW'],
   },
   {
@@ -365,8 +366,7 @@ export const FALLBACK_VEHICLES: Vehicle[] = [
     },
     conditionNotes:
       'Excellent. A minor surface scratch is visible on the rear bumper only in direct sunlight. Wheels and interior remain in excellent condition.',
-    whatsappMessage:
-      "Hi, I'm interested in the 2022 Audi RS6 Avant listed on The 03 Collective.",
+    whatsappMessage: "Hi, I'm interested in the 2022 Audi RS6 Avant listed on The 03 Collective.",
     tags: ['441 kW', 'Carbon Pack', 'Quattro AWD'],
   },
   {

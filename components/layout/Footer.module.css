@@ -2,9 +2,7 @@
   margin-top: 96px;
   padding: 64px 0 28px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    linear-gradient(180deg, rgba(var(--accent-rgb), 0.08), transparent 30%),
-    #0f0f10;
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.08), transparent 30%), #0f0f10;
 }
 
 .grid {
@@ -123,6 +121,15 @@
   margin-bottom: 12px;
   color: rgba(255, 255, 255, 0.72);
   font-size: 14px;
+}
+
+.contactItem a {
+  color: inherit;
+  transition: color var(--transition);
+}
+
+.contactItem a:hover {
+  color: #ffffff;
 }
 
 .bottom {

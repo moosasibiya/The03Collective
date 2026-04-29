@@ -8,10 +8,7 @@ export default function SellScreen() {
   return (
     <>
       <PageHeader
-        breadcrumbs={[
-          { href: '/', label: 'Home' },
-          { label: 'Sell Your Car' },
-        ]}
+        breadcrumbs={[{ href: '/', label: 'Home' }, { label: 'Sell Your Car' }]}
         description="Most cars are undersold because they are poorly presented. We exist to change that."
         label="Consignment"
         title={
@@ -65,7 +62,9 @@ export default function SellScreen() {
             <RevealWrapper delay={160}>
               <div className="formCard">
                 <div className="formTitle">Get Started</div>
-                <p className="formSub">Fill in your details and we&apos;ll be in touch within 24 hours.</p>
+                <p className="formSub">
+                  Fill in your details and we&apos;ll be in touch within 24 hours.
+                </p>
                 <ConsignmentForm />
               </div>
             </RevealWrapper>

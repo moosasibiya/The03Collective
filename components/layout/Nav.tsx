@@ -25,7 +25,13 @@ export default function Nav() {
 
   return (
     <>
-      <header className={cn(styles.nav, onHome && !scrolled && styles.inverse, scrolled && styles.scrolled)}>
+      <header
+        className={cn(
+          styles.nav,
+          onHome && !scrolled && styles.inverse,
+          scrolled && styles.scrolled
+        )}
+      >
         <div className={`container ${styles.inner}`}>
           <Link className={styles.logo} href="/">
             <span className={styles.logoThe}>The</span>
@@ -38,7 +44,11 @@ export default function Nav() {
               const active = pathname === link.href || pathname.startsWith(`${link.href}/`)
 
               return (
-                <Link key={link.href} className={cn(styles.link, active && styles.active)} href={link.href}>
+                <Link
+                  key={link.href}
+                  className={cn(styles.link, active && styles.active)}
+                  href={link.href}
+                >
                   {link.label}
                 </Link>
               )

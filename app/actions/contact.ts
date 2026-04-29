@@ -5,13 +5,11 @@ import * as Sentry from '@sentry/nextjs'
 import { isSpamSubmission } from '@/lib/form-security'
 import { prisma } from '@/lib/prisma'
 import { rateLimit } from '@/lib/rateLimit'
-import { resend } from '@/lib/resend'
+import { getResend } from '@/lib/resend'
 import { ContactSchema } from '@/lib/validations'
 import { escapeHtml } from '@/utils/escapeHtml'
 
-export type ActionResult =
-  | { success: true }
-  | { success: false; error: string }
+export type ActionResult = { success: true } | { success: false; error: string }
 
 export async function submitContact(
   _prev: ActionResult | null,
@@ -59,6 +57,8 @@ export async function submitContact(
         userAgent,
       },
     })
+
+    const resend = getResend()
 
     await resend.emails.send({
       from: 'The 03 Collective <hello@the03collective.co.za>',

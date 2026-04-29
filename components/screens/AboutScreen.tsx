@@ -8,10 +8,7 @@ export default function AboutScreen() {
   return (
     <>
       <PageHeader
-        breadcrumbs={[
-          { href: '/', label: 'Home' },
-          { label: 'About' },
-        ]}
+        breadcrumbs={[{ href: '/', label: 'Home' }, { label: 'About' }]}
         label="Our Story"
         title={
           <>
@@ -32,14 +29,16 @@ export default function AboutScreen() {
                   should not feel transactional.
                 </p>
                 <p className={styles.body}>
-                  The name says it. Three principles, held to without compromise: <strong>Selection</strong> -
-                  we do not list everything, we list what is worth listing. <strong>Presentation</strong> -
-                  every vehicle deserves to be seen properly. <strong>Trust</strong> - no games, no pressure,
-                  no small print surprises.
+                  The name says it. Three principles, held to without compromise:{' '}
+                  <strong>Selection</strong> - we do not list everything, we list what is worth
+                  listing. <strong>Presentation</strong> - every vehicle deserves to be seen
+                  properly. <strong>Trust</strong> - no games, no pressure, no small print
+                  surprises.
                 </p>
                 <p className={styles.body}>
-                  We are based in Johannesburg, but our reach is national. Our buyers are discerning. Our
-                  sellers care about how their car is represented. And our standard does not move.
+                  We are based in Johannesburg, but our reach is national. Our buyers are
+                  discerning. Our sellers care about how their car is represented. And our standard
+                  does not move.
                 </p>
                 <div className={styles.heroActions}>
                   <Button href="/inventory">Browse Inventory {'->'}</Button>
