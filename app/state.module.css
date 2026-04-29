@@ -6,6 +6,18 @@
   text-align: center;
 }
 
+.loadingFront {
+  position: relative;
+  z-index: 5100;
+  min-height: 100svh;
+  padding: 120px 24px 96px;
+}
+
+.loadingFront .card {
+  transform: translateY(18px);
+  animation: loadingCardSettle 520ms ease both;
+}
+
 .card {
   max-width: 520px;
   padding: 36px;
@@ -59,5 +71,27 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingCardSettle {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingFront .card {
+    animation: none;
+  }
+
+  .loader {
+    animation: none;
   }
 }

@@ -69,7 +69,7 @@ export default function EnquiryForm({ vehicleName, vehicleSlug }: EnquiryFormPro
           inputMode="tel"
           maxLength={20}
           name="phone"
-          placeholder="+27 82 000 0000"
+          placeholder="+27 65 907 9083"
           required
           type="tel"
         />

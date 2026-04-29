@@ -48,6 +48,7 @@
   width: max-content;
   min-width: 128px;
   padding: 0;
+  margin-left: clamp(-56px, -3vw, -18px);
   text-align: left;
 }
 
@@ -235,6 +236,7 @@
 
   .logo {
     min-width: 112px;
+    margin-left: 0;
   }
 
   .logoThe {

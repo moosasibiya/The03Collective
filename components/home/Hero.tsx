@@ -69,14 +69,10 @@ export default function Hero() {
             <br />
             Its Place.
           </h1>
-          <p className={styles.subtitle}>
-            Premium vehicles. Curated selection.
-            <br />
-            Personal service - not a number in a queue.
-          </p>
+          <p className={styles.subtitle}>Premium vehicles. Curated selection.</p>
           <div className={styles.actions}>
             <Button href="/inventory" size="lg">
-              Browse Inventory {'->'}
+              Browse Inventory
             </Button>
             <Button href="/sell" size="lg" variant="ghost">
               Sell Your Car

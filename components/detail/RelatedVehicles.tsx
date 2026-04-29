@@ -22,7 +22,7 @@ export default function RelatedVehicles({ vehicles }: RelatedVehiclesProps) {
           </h3>
         </div>
         <Button href="/inventory" size="sm" variant="darkOutline">
-          View All {'->'}
+          View All
         </Button>
       </div>
 

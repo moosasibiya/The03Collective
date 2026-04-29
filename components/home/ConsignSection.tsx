@@ -41,7 +41,7 @@ export default function ConsignSection() {
 
             <div className={styles.actions}>
               <Button href="/sell" size="lg">
-                Start the Process {'->'}
+                Start the Process
               </Button>
               <Button
                 external

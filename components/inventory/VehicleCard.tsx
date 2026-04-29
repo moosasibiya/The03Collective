@@ -28,6 +28,11 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
   return (
     <article className={cn(styles.card, tone === 'light' && styles.lightCard)}>
       <div className={styles.topLine} />
+      <Link
+        aria-label={`View details for ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+        className={styles.cardLink}
+        href={href}
+      />
       <div className={styles.imageWrap}>
         {vehicle.mainImage?.asset.url ? (
           <Image
@@ -50,10 +55,16 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
         <Badge className={styles.badge} status={vehicle.status} />
 
         <div className={styles.overlay}>
-          <Button href={href} size="sm" variant={isReserved ? 'outline' : 'primary'}>
-            View Details {'->'}
+          <Button
+            className={styles.actionButton}
+            href={href}
+            size="sm"
+            variant={isReserved ? 'outline' : 'primary'}
+          >
+            View Details
           </Button>
           <Button
+            className={styles.actionButton}
             external
             href={buildWhatsApp(
               SITE_CONTACT.whatsappNumber,
@@ -69,7 +80,7 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
         </div>
       </div>
 
-      <Link className={styles.body} href={href}>
+      <div className={styles.body}>
         <div className={styles.meta}>
           <span>{vehicle.year}</span>
           <span className={styles.separator}>.</span>
@@ -89,9 +100,9 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
             <span className={styles.currency}>R</span>
             <span className={styles.amount}>{formatPrice(vehicle.price)}</span>
           </div>
-          <span className={styles.arrow}>{'->'}</span>
+          <span className={styles.arrow} />
         </div>
-      </Link>
+      </div>
     </article>
   )
 }

@@ -29,8 +29,8 @@ export async function submitEnquiry(
 
   const { vehicleSlug, vehicleName, name, phone, email, message } = parsed.data
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.the03collective.co.za'
-  const businessWhatsApp = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '27820000000'
-  const businessPhoneDisplay = process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 82 000 0000'
+  const businessWhatsApp = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '27659079083'
+  const businessPhoneDisplay = process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 65 907 9083'
   const safeVehicleName = escapeHtml(vehicleName)
   const safeName = escapeHtml(name)
   const safePhone = escapeHtml(phone)
@@ -100,7 +100,7 @@ export async function submitEnquiry(
           <div style="margin-top:32px;padding-top:24px;border-top:1px solid #EDE8DF">
             <a href="${listingUrl}"
                style="display:inline-block;padding:12px 24px;background:#C9A96E;color:#0A0A0B;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none">
-              View Listing ->
+              View Listing
             </a>
           </div>
         </div>

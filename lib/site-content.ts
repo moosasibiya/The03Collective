@@ -1,14 +1,15 @@
 import type { Testimonial, Vehicle } from '@/types'
 
 export const SITE_CONTACT = {
-  whatsappNumber: process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '27820000000',
-  phoneDisplay: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 82 000 0000',
-  phoneHref: `tel:${(process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 82 000 0000').replace(/[^\d+]/g, '')}`,
+  whatsappNumber: process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '27659079083',
+  phoneDisplay: process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 65 907 9083',
+  phoneHref: `tel:${(process.env.NEXT_PUBLIC_BUSINESS_PHONE || '+27 65 907 9083').replace(/[^\d+]/g, '')}`,
   email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'hello@the03collective.co.za',
   emailHref: `mailto:${process.env.NEXT_PUBLIC_BUSINESS_EMAIL || 'hello@the03collective.co.za'}`,
-  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || '@the03collective',
+  instagram: process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || '@the03collective.za',
   instagramUrl:
-    process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://www.instagram.com/the03collective',
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
+    'https://www.instagram.com/the03collective.za?igsh=MXhnMWRxNzVtYWl3dA%3D%3D&utm_source=qr',
   facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || 'https://www.facebook.com/the03collective',
   tiktokUrl: process.env.NEXT_PUBLIC_TIKTOK_URL || 'https://www.tiktok.com/@the03collective',
   location: ['Johannesburg, Gauteng', 'South Africa'],

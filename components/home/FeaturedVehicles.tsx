@@ -21,7 +21,7 @@ export default function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
             </h2>
           </div>
           <Button href="/inventory" variant="ghost">
-            View All {'->'}
+            View All
           </Button>
         </RevealWrapper>
 
@@ -33,7 +33,7 @@ export default function FeaturedVehicles({ vehicles }: FeaturedVehiclesProps) {
 
         <RevealWrapper className={styles.action} delay={120}>
           <Button href="/inventory" size="lg" variant="outline">
-            View Full Inventory {'->'}
+            View Full Inventory
           </Button>
         </RevealWrapper>
       </div>

@@ -41,7 +41,7 @@ export default function AboutScreen() {
                   does not move.
                 </p>
                 <div className={styles.heroActions}>
-                  <Button href="/inventory">Browse Inventory {'->'}</Button>
+                  <Button href="/inventory">Browse Inventory</Button>
                   <Button href="/contact" variant="outline">
                     Get in Touch
                   </Button>
@@ -131,7 +131,7 @@ export default function AboutScreen() {
             </h2>
             <div className={styles.heroActions}>
               <Button href="/inventory" size="lg">
-                Browse Inventory {'->'}
+                Browse Inventory
               </Button>
               <Button href="/sell" size="lg" variant="outline">
                 Sell Your Car

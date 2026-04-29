@@ -74,7 +74,7 @@ export default function EnquiryPanel({ vehicle }: EnquiryPanelProps) {
               Enquire on WhatsApp
             </Button>
             <Button block onClick={() => setOpen((current) => !current)}>
-              {open ? 'Hide Enquiry Form' : 'Send an Enquiry ->'}
+              {open ? 'Hide Enquiry Form' : 'Send an Enquiry'}
             </Button>
             <Button
               block

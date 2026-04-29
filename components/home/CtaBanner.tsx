@@ -16,7 +16,7 @@ export default function CtaBanner() {
         </RevealWrapper>
         <RevealWrapper className={styles.actions} delay={180}>
           <Button href="/inventory" size="lg" variant="dark">
-            Browse Inventory {'->'}
+            Browse Inventory
           </Button>
           <Button href="/sell" size="lg">
             Sell Your Car
