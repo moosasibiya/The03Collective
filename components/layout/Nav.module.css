@@ -220,5 +220,34 @@
 
   .hamburger {
     display: flex;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    height: 72px;
+  }
+
+  .inner {
+    column-gap: 16px;
+  }
+
+  .logo {
+    min-width: 112px;
+  }
+
+  .logoThe {
+    font-size: 7px;
+    letter-spacing: 0.68em;
+  }
+
+  .logoNumeral {
+    font-size: 38px;
+  }
+
+  .logoCollective {
+    font-size: 9px;
+    letter-spacing: 0.31em;
   }
 }

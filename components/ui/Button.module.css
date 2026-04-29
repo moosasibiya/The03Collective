@@ -107,3 +107,14 @@
   border-color: var(--accent);
   background: rgba(var(--accent-rgb), 0.08);
 }
+
+@media (max-width: 420px) {
+  .button {
+    width: 100%;
+    min-height: 44px;
+    padding-inline: 18px;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+  }
+}

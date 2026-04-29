@@ -67,3 +67,27 @@
 .active {
   background: var(--accent);
 }
+
+@media (max-width: 720px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .wrap {
+    padding: 48px 22px 32px;
+  }
+
+  .quote {
+    top: 18px;
+    left: 20px;
+    font-size: 72px;
+  }
+
+  .author {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    line-height: 1.45;
+    text-align: center;
+  }
+}

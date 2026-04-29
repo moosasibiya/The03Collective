@@ -506,4 +506,14 @@ main {
   .formCard {
     padding: 24px;
   }
+
+  .sectionTitle {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 420px) {
+  .formCard {
+    padding: 20px;
+  }
 }

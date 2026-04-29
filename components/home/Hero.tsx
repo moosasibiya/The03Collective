@@ -18,8 +18,8 @@ const HERO_VIDEO_SOURCES = [
 ]
 
 const HERO_IMAGE = {
-  src: '/media/hero-porsche-br.jpg',
-  file: path.join(process.cwd(), 'public', 'media', 'hero-porsche-br.jpg'),
+  src: '/media/hero-main-porsche.jpg',
+  file: path.join(process.cwd(), 'public', 'media', 'hero-main-porsche.jpg'),
 }
 
 export default function Hero() {

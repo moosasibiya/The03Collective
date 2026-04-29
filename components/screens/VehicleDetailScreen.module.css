@@ -95,3 +95,38 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 720px) {
+  .breadcrumbBar {
+    margin-top: 72px;
+    padding: 12px 0;
+  }
+
+  .breadcrumb {
+    gap: 8px;
+  }
+
+  .body {
+    gap: 32px;
+    padding-top: 32px;
+  }
+
+  .title {
+    font-size: clamp(36px, 11vw, 48px);
+    line-height: 1.04;
+    overflow-wrap: anywhere;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .section {
+    margin-top: 32px;
+  }
+
+  .relatedBand {
+    margin-top: 64px;
+    padding: 56px 0 72px;
+  }
+}

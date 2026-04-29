@@ -92,3 +92,22 @@ a.detail:hover {
     padding: 28px 24px;
   }
 }
+
+@media (max-width: 520px) {
+  .page {
+    padding: 44px 0 80px;
+  }
+
+  .grid {
+    gap: 36px;
+  }
+
+  .grid > :first-child {
+    padding: 24px 20px;
+  }
+
+  .hoursRow {
+    display: grid;
+    gap: 2px;
+  }
+}
