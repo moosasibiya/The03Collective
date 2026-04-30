@@ -9,6 +9,57 @@
   animation: revealFade 320ms ease 2100ms forwards;
 }
 
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 4;
+  width: min(520px, calc(100vw - 48px));
+  padding: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-align: center;
+  transform: translate(-50%, calc(-50% + 18px));
+  animation:
+    loadingCardSettle 520ms ease both,
+    loadingCardFade 260ms ease 420ms forwards;
+}
+
+.loader {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 24px;
+  border: 1px solid rgba(var(--accent-rgb), 0.22);
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  animation: spin 0.9s linear infinite;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--text);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 300;
+  line-height: 1.05;
+}
+
+.body {
+  margin-top: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
 .panel {
   position: absolute;
   top: 0;
@@ -53,7 +104,8 @@
 }
 
 .reducedMotion .panel,
-.reducedMotion .seam {
+.reducedMotion .seam,
+.reducedMotion .card {
   display: none;
 }
 
@@ -64,8 +116,34 @@
   }
 
   .panel,
-  .seam {
+  .seam,
+  .card {
     display: none;
+  }
+}
+
+@keyframes loadingCardSettle {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 30px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, calc(-50% + 18px));
+  }
+}
+
+@keyframes loadingCardFade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
