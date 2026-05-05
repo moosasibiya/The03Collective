@@ -21,9 +21,7 @@
   background: var(--card);
   text-align: center;
   transform: translate(-50%, calc(-50% + 18px));
-  animation:
-    loadingCardSettle 520ms ease both,
-    loadingCardFade 320ms ease 1560ms forwards;
+  animation: loadingCardSettle 520ms ease both;
 }
 
 .loader {
@@ -104,8 +102,7 @@
 }
 
 .reducedMotion .panel,
-.reducedMotion .seam,
-.reducedMotion .card {
+.reducedMotion .seam {
   display: none;
 }
 
@@ -116,8 +113,7 @@
   }
 
   .panel,
-  .seam,
-  .card {
+  .seam {
     display: none;
   }
 }
@@ -131,13 +127,6 @@
   to {
     opacity: 1;
     transform: translate(-50%, calc(-50% + 18px));
-  }
-}
-
-@keyframes loadingCardFade {
-  to {
-    opacity: 0;
-    visibility: hidden;
   }
 }
 

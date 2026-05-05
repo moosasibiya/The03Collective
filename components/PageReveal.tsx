@@ -9,21 +9,24 @@ const REDUCED_MOTION_MS = 300
 
 export default function PageReveal() {
   const [state, setState] = useState({
-    visible: false,
+    visible: true,
     reducedMotion: false,
   })
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const duration = reducedMotion ? REDUCED_MOTION_MS : HOLD_MS + REVEAL_MS
-    const showTimer = window.setTimeout(() => setState({ visible: true, reducedMotion }), 0)
+    const motionTimer = window.setTimeout(
+      () => setState((current) => ({ ...current, reducedMotion })),
+      0
+    )
     const hideTimer = window.setTimeout(
       () => setState((current) => ({ ...current, visible: false })),
       duration
     )
 
     return () => {
-      window.clearTimeout(showTimer)
+      window.clearTimeout(motionTimer)
       window.clearTimeout(hideTimer)
     }
   }, [])

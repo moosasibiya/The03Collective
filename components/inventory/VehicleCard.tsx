@@ -24,6 +24,32 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
   const whatsappMessage =
     vehicle.whatsappMessage ??
     `Hi, I'm interested in the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`
+  const actions = (
+    <>
+      <Button
+        className={styles.actionButton}
+        href={href}
+        size="sm"
+        variant={isReserved ? 'outline' : 'primary'}
+      >
+        View Details
+      </Button>
+      <Button
+        className={styles.actionButton}
+        external
+        href={buildWhatsApp(
+          SITE_CONTACT.whatsappNumber,
+          isSold
+            ? `Hi, I'm looking for something similar to the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`
+            : whatsappMessage
+        )}
+        size="sm"
+        variant={isSold ? 'wa' : isReserved ? 'ghost' : 'wa'}
+      >
+        {isSold ? 'Similar' : isReserved ? 'Waiting List' : 'Enquire'}
+      </Button>
+    </>
+  )
 
   return (
     <article className={cn(styles.card, tone === 'light' && styles.lightCard)}>
@@ -54,30 +80,7 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
 
         <Badge className={styles.badge} status={vehicle.status} />
 
-        <div className={styles.overlay}>
-          <Button
-            className={styles.actionButton}
-            href={href}
-            size="sm"
-            variant={isReserved ? 'outline' : 'primary'}
-          >
-            View Details
-          </Button>
-          <Button
-            className={styles.actionButton}
-            external
-            href={buildWhatsApp(
-              SITE_CONTACT.whatsappNumber,
-              isSold
-                ? `Hi, I'm looking for something similar to the ${vehicle.year} ${vehicle.make} ${vehicle.model}.`
-                : whatsappMessage
-            )}
-            size="sm"
-            variant={isSold ? 'wa' : isReserved ? 'ghost' : 'wa'}
-          >
-            {isSold ? 'Similar' : isReserved ? 'Waiting List' : 'Enquire'}
-          </Button>
-        </div>
+        <div className={styles.overlay}>{actions}</div>
       </div>
 
       <div className={styles.body}>
@@ -102,6 +105,7 @@ export default function VehicleCard({ vehicle, index, tone = 'dark' }: VehicleCa
           </div>
           <span className={styles.arrow} />
         </div>
+        <div className={styles.mobileActions}>{actions}</div>
       </div>
     </article>
   )

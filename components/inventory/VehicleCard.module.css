@@ -154,6 +154,10 @@
   z-index: 1;
 }
 
+.mobileActions {
+  display: none;
+}
+
 .card:hover .overlay {
   transform: translateY(0);
 }
@@ -269,16 +273,22 @@
 
 @media (max-width: 720px) {
   .overlay {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    display: none;
+  }
+
+  .body {
+    z-index: 3;
+  }
+
+  .mobileActions {
+    position: relative;
+    z-index: 4;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    transform: none;
     gap: 10px;
-    padding: 36px 12px 12px;
-    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 11, 0.96) 68%);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--vehicle-card-border-soft);
   }
 
   .actionButton {
@@ -292,7 +302,7 @@
 }
 
 @media (max-width: 380px) {
-  .overlay {
+  .mobileActions {
     grid-template-columns: 1fr;
   }
 }
