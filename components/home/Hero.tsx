@@ -1,5 +1,6 @@
 import { existsSync } from 'node:fs'
 import path from 'node:path'
+import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import RevealWrapper from '@/components/ui/RevealWrapper'
 import styles from './Hero.module.css'
@@ -32,10 +33,15 @@ export default function Hero() {
       <div className={styles.grid} />
       <div className={styles.scene}>
         {hasHeroImage ? (
-          <div
+          <Image
             aria-hidden="true"
+            alt=""
             className={styles.image}
-            style={{ backgroundImage: `url('${HERO_IMAGE.src}')` }}
+            fetchPriority="high"
+            fill
+            preload
+            sizes="100vw"
+            src={HERO_IMAGE.src}
           />
         ) : null}
         {hasHeroVideo ? (

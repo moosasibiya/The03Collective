@@ -23,7 +23,7 @@
   transform: translate(-50%, calc(-50% + 18px));
   animation:
     loadingCardSettle 520ms ease both,
-    loadingCardFade 260ms ease 420ms forwards;
+    loadingCardFade 320ms ease 1560ms forwards;
 }
 
 .loader {

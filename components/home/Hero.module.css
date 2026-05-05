@@ -39,9 +39,8 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-position: center 58%;
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center 58%;
   opacity: 0.9;
   filter: saturate(0.96) brightness(0.8) contrast(1.08);
   pointer-events: none;
