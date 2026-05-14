@@ -258,6 +258,21 @@
   .scene {
     inset: 0;
   }
+
+  .copy {
+    margin-left: 0;
+  }
+
+  .scroll {
+    left: 0;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1180px) {
+  .title {
+    font-size: clamp(64px, 8vw, 88px);
+    line-height: 0.98;
+  }
 }
 
 @media (max-width: 720px) {

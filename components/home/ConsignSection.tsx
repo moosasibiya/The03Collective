@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import RevealWrapper from '@/components/ui/RevealWrapper'
 import { HOME_CONSIGN_BENEFITS, SITE_CONTACT } from '@/lib/site-content'
@@ -10,6 +11,13 @@ export default function ConsignSection() {
       <div className="container">
         <div className={styles.inner}>
           <RevealWrapper className={styles.visual}>
+            <Image
+              alt="Audi R8 photographed at The 03 Collective"
+              className={styles.visualImage}
+              fill
+              sizes="(max-width: 980px) 100vw, 52vw"
+              src="/media/consign-r8.jpg"
+            />
             <div className={styles.visualBg} />
             <span className={styles.cornerTl} />
             <span className={styles.cornerBr} />

@@ -65,18 +65,6 @@ export default function ContactScreen({ initialMessage, initialType }: ContactSc
                 </div>
               </div>
 
-              <div className={styles.block}>
-                <h2>Office Hours</h2>
-                <div className={styles.hours}>
-                  {SITE_CONTACT.hours.map((row) => (
-                    <div className={styles.hoursRow} key={row.day}>
-                      <span>{row.day}</span>
-                      <span>{row.time}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className={styles.note}>WhatsApp is monitored beyond these hours.</p>
-              </div>
             </RevealWrapper>
 
             <RevealWrapper delay={120}>

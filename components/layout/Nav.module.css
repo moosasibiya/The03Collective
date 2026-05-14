@@ -213,6 +213,29 @@
   color: #ffffff;
 }
 
+@media (max-width: 1180px) {
+  .inner {
+    grid-template-columns: max-content 1fr max-content;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .links {
+    gap: 28px;
+    margin-left: 0;
+  }
+
+  .cta {
+    transform: none;
+  }
+
+  .navOutline {
+    display: none;
+  }
+}
+
 @media (max-width: 980px) {
   .links,
   .cta {

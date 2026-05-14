@@ -1,7 +1,8 @@
+import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import PageHeader from '@/components/ui/PageHeader'
 import RevealWrapper from '@/components/ui/RevealWrapper'
-import { ABOUT_PILLARS, ABOUT_STORY, TEAM_MEMBERS } from '@/lib/site-content'
+import { ABOUT_PILLARS, ABOUT_STORY } from '@/lib/site-content'
 import styles from './AboutScreen.module.css'
 
 export default function AboutScreen() {
@@ -12,9 +13,9 @@ export default function AboutScreen() {
         label="Our Story"
         title={
           <>
-            We Started with
+            Built Around
             <br />
-            Three <em>Principles.</em>
+            Three <em>Standards.</em>
           </>
         }
       />
@@ -23,23 +24,37 @@ export default function AboutScreen() {
         <div className="container">
           <RevealWrapper className={styles.hero}>
             <div className={styles.heroInner}>
-              <div>
+              <div className={styles.introPanel}>
+                <span className={`label ${styles.introLabel}`}>Johannesburg - National Reach</span>
                 <p className={styles.lead}>
-                  The 03 Collective was built on a simple belief: that automotive transactions
-                  should not feel transactional.
+                  The 03 Collective exists for people who care about how exceptional cars are
+                  bought, sold, and represented.
                 </p>
                 <p className={styles.body}>
-                  The name says it. Three principles, held to without compromise:{' '}
-                  <strong>Selection</strong> - we do not list everything, we list what is worth
-                  listing. <strong>Presentation</strong> - every vehicle deserves to be seen
-                  properly. <strong>Trust</strong> - no games, no pressure, no small print
-                  surprises.
+                  Our name points to the three standards behind every listing:{' '}
+                  <strong>Selection</strong> - we only take on cars that meet the mark.{' '}
+                  <strong>Presentation</strong> - every vehicle is shown with the care it deserves.{' '}
+                  <strong>Trust</strong> - every buyer and seller gets a clear, direct process.
                 </p>
                 <p className={styles.body}>
-                  We are based in Johannesburg, but our reach is national. Our buyers are
-                  discerning. Our sellers care about how their car is represented. And our standard
-                  does not move.
+                  We are based in Johannesburg with a national reach. Our buyers are considered,
+                  our sellers are selective, and our standard stays consistent from the first
+                  conversation to the final handover.
                 </p>
+                <dl className={styles.metrics} aria-label="About The 03 Collective">
+                  <div>
+                    <dt>Selective</dt>
+                    <dd>Inventory</dd>
+                  </div>
+                  <div>
+                    <dt>Proper</dt>
+                    <dd>Presentation</dd>
+                  </div>
+                  <div>
+                    <dt>Direct</dt>
+                    <dd>Process</dd>
+                  </div>
+                </dl>
                 <div className={styles.heroActions}>
                   <Button href="/inventory">Browse Inventory</Button>
                   <Button href="/contact" variant="outline">
@@ -49,21 +64,18 @@ export default function AboutScreen() {
               </div>
 
               <div className={styles.visual}>
+                <Image
+                  alt="Red Porsche 911 GT3 photographed at The 03 Collective"
+                  className={styles.visualImage}
+                  fill
+                  sizes="(max-width: 980px) 100vw, 52vw"
+                  src="/media/about-porsche.jpg"
+                />
                 <div className={styles.visualBg} />
                 <span className={styles.cornerTl} />
                 <span className={styles.cornerTr} />
                 <span className={styles.cornerBl} />
                 <span className={styles.cornerBr} />
-                <div className={styles.visualCenter}>
-                  <span className={styles.visualThe}>The</span>
-                  <span className={styles.visualNum}>03</span>
-                  <span className={styles.visualWord}>Collective</span>
-                  <div className={styles.visualRule}>
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                </div>
               </div>
             </div>
           </RevealWrapper>
@@ -85,49 +97,25 @@ export default function AboutScreen() {
               <div>
                 <span className="label">Our Background</span>
                 <h2 className={`sectionTitle ${styles.sectionTitle}`}>
-                  From Passion
+                  Built from
                   <br />
-                  to <em>Practice.</em>
+                  Real <em>Experience.</em>
                 </h2>
               </div>
               <div className={styles.storyContent}>
-                {ABOUT_STORY.map((paragraph, index) => (
-                  <p className={index === 0 ? styles.storyLead : undefined} key={paragraph}>
-                    {paragraph}
-                  </p>
+                {ABOUT_STORY.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-            </div>
-          </RevealWrapper>
-
-          <RevealWrapper className={styles.team}>
-            <span className="label">The People</span>
-            <h2 className={`sectionTitle ${styles.sectionTitle}`}>
-              The Team
-              <br />
-              Behind the <em>Standard.</em>
-            </h2>
-
-            <div className={styles.teamGrid}>
-              {TEAM_MEMBERS.map((member, index) => (
-                <article className={styles.teamCard} key={member.name}>
-                  <div className={styles.teamImage} data-theme={index + 1} />
-                  <div className={styles.teamInfo}>
-                    <h3>{member.name}</h3>
-                    <span>{member.role}</span>
-                    <p>{member.bio}</p>
-                  </div>
-                </article>
-              ))}
             </div>
           </RevealWrapper>
 
           <RevealWrapper className={styles.cta}>
             <span className="label">Come See What We Mean</span>
             <h2 className={`sectionTitle ${styles.ctaTitle}`}>
-              Find Your Next Car
+              Find the Right Car
               <br />
-              or <em>Sell the One You Have.</em>
+              or <em>Sell Yours Properly.</em>
             </h2>
             <div className={styles.heroActions}>
               <Button href="/inventory" size="lg">

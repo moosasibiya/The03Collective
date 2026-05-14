@@ -59,27 +59,9 @@ a.detail:hover {
   margin-top: 20px;
 }
 
-.hint,
-.note {
+.hint {
   color: var(--light-text-ghost);
   font-size: 12px;
-}
-
-.hours {
-  display: grid;
-  gap: 10px;
-}
-
-.hoursRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--light-text-muted);
-  font-size: 14px;
-}
-
-.note {
-  margin-top: 12px;
 }
 
 @media (max-width: 980px) {
@@ -104,10 +86,5 @@ a.detail:hover {
 
   .grid > :first-child {
     padding: 24px 20px;
-  }
-
-  .hoursRow {
-    display: grid;
-    gap: 2px;
   }
 }

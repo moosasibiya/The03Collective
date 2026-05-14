@@ -15,14 +15,18 @@
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
+  background: #09090b;
+}
+
+.visualImage {
+  object-fit: cover;
+  object-position: center 46%;
 }
 
 .visualBg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 60% 62%, rgba(var(--accent-rgb), 0.18), transparent 24%),
-    linear-gradient(145deg, #131315 0%, #09090b 50%, #20060a 100%);
+  pointer-events: none;
 }
 
 .visualBg::after {
