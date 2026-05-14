@@ -7,6 +7,8 @@ type VehicleStructuredDataProps = {
 
 const availabilityMap: Record<Vehicle['status'], string> = {
   available: 'https://schema.org/InStock',
+  comingSoon: 'https://schema.org/PreOrder',
+  hidden: 'https://schema.org/OutOfStock',
   reserved: 'https://schema.org/PreOrder',
   sold: 'https://schema.org/SoldOut',
 }

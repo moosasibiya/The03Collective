@@ -1,4 +1,4 @@
-export type VehicleStatus = 'available' | 'reserved' | 'sold'
+export type VehicleStatus = 'available' | 'reserved' | 'sold' | 'comingSoon' | 'hidden'
 
 export interface SanityImage {
   asset: {
@@ -28,6 +28,7 @@ export interface Vehicle {
   mileage: number
   price: number
   colour?: string
+  bodyType?: string
   trim?: string
   transmission?: string
   fuel?: string
@@ -37,6 +38,7 @@ export interface Vehicle {
   mainImage?: SanityImage
   images?: SanityImage[]
   description?: unknown[]
+  shortDescription?: string
   descriptionHtml?: string
   features?: string[]
   specs?: VehicleSpecs

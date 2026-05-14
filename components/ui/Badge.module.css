@@ -23,6 +23,13 @@
   border-color: rgba(139, 105, 20, 0.5);
 }
 
+.comingSoon,
+.hidden {
+  background: rgba(139, 105, 20, 0.25);
+  color: #d4a843;
+  border-color: rgba(139, 105, 20, 0.5);
+}
+
 .sold {
   background: rgba(155, 35, 53, 0.2);
   color: #e05a6e;
