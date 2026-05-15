@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import styles from './StudioApp.module.css'
 
 export const metadata: Metadata = {
   title: 'Studio - The 03 Collective',
@@ -9,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
-  return children
+  return <div className={styles.studioShell}>{children}</div>
 }

@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Exo_2, Michroma, Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import PageReveal from '@/components/PageReveal'
 import { SITE_THEME_COLOR } from '@/lib/site-config'
 import { buildMetadata } from '@/utils/metadata'
 import './globals.css'
@@ -53,7 +52,6 @@ export default function RootLayout({
     >
       <body>
         {children}
-        <PageReveal />
         <Analytics />
         <SpeedInsights />
       </body>
