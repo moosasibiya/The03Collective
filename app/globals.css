@@ -384,6 +384,43 @@ main {
     background var(--transition);
 }
 
+.formSelect {
+  appearance: none;
+  min-height: 64px;
+  padding-right: 48px;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--text) 50%) calc(100% - 22px) 50% / 7px 7px
+      no-repeat,
+    linear-gradient(135deg, var(--text) 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px
+      no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    #131417;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.formSelect:hover {
+  border-color: rgba(var(--accent-rgb), 0.34);
+  background:
+    linear-gradient(45deg, transparent 50%, #ffffff 50%) calc(100% - 22px) 50% / 7px 7px
+      no-repeat,
+    linear-gradient(135deg, #ffffff 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px
+      no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+    #17191d;
+}
+
+.formSelect option {
+  background: #121316;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.formSelect option[value=''] {
+  color: var(--text-muted);
+}
+
 .formInput::placeholder,
 .formTextarea::placeholder {
   color: var(--text-ghost);
@@ -395,7 +432,13 @@ main {
   outline: none;
   border-color: rgba(var(--accent-rgb), 0.45);
   box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
-  background: rgba(255, 255, 255, 0.05);
+  background:
+    linear-gradient(45deg, transparent 50%, #ffffff 50%) calc(100% - 22px) 50% / 7px 7px
+      no-repeat,
+    linear-gradient(135deg, #ffffff 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px
+      no-repeat,
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
+    #17191d;
 }
 
 .formTextarea {

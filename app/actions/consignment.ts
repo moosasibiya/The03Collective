@@ -64,14 +64,16 @@ export async function submitConsignment(
       },
     })
 
-    const resend = getResend()
+    try {
+      const resend = getResend()
+      const from = process.env.RESEND_FROM_EMAIL || 'The 03 Collective <hello@the03collective.co.za>'
 
-    await resend.emails.send({
-      from: 'The 03 Collective <hello@the03collective.co.za>',
-      to: process.env.BUSINESS_EMAIL!,
-      replyTo: email || undefined,
-      subject: `New Consignment Lead - ${make} ${model}`,
-      html: `
+      await resend.emails.send({
+        from,
+        to: process.env.BUSINESS_EMAIL!,
+        replyTo: email || undefined,
+        subject: `New Consignment Lead - ${make} ${model}`,
+        html: `
         <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:40px 24px;color:#1C1A17">
           <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#A09890;margin-bottom:8px">The 03 Collective</p>
           <h1 style="font-size:28px;font-weight:300;margin:0 0 32px">New Consignment Lead</h1>
@@ -86,14 +88,14 @@ export async function submitConsignment(
           </table>
         </div>
       `,
-    })
+      })
 
-    if (email) {
-      await resend.emails.send({
-        from: 'The 03 Collective <hello@the03collective.co.za>',
-        to: email,
-        subject: `We've received your submission - ${make} ${model}`,
-        html: `
+      if (email) {
+        await resend.emails.send({
+          from,
+          to: email,
+          subject: `We've received your submission - ${make} ${model}`,
+          html: `
           <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:40px 24px;color:#1C1A17">
             <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#A09890;margin-bottom:8px">The 03 Collective</p>
             <h1 style="font-size:28px;font-weight:300;margin:0 0 16px">We'll be in touch.</h1>
@@ -106,7 +108,11 @@ export async function submitConsignment(
             </div>
           </div>
         `,
-      })
+        })
+      }
+    } catch (emailError) {
+      Sentry.captureException(emailError)
+      console.error('[submitConsignment:email]', emailError)
     }
 
     return { success: true }
