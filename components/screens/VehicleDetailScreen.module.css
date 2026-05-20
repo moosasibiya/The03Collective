@@ -51,7 +51,7 @@
 
 .title {
   color: var(--text);
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: clamp(44px, 5vw, 64px);
   font-weight: 300;
   line-height: 0.98;

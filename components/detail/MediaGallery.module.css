@@ -80,7 +80,7 @@
   display: block;
   width: 100%;
   height: auto;
-  max-height: min(78vh, 920px);
+  max-height: min(74vh, 860px);
   object-fit: contain;
   object-position: center;
 }
@@ -176,31 +176,39 @@
 }
 
 .lightbox {
+  --lightbox-header-height: 76px;
   position: fixed;
   inset: 0;
   z-index: 1200;
-  display: grid;
-  place-items: center;
-  padding: clamp(16px, 3vw, 28px);
+  display: block;
+  padding: 0;
   background: rgba(4, 4, 5, 0.94);
   backdrop-filter: blur(12px);
 }
 
 .lightboxInner {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: 14px;
-  width: min(100%, 1560px);
-  max-width: 100%;
-  height: min(960px, calc(100dvh - clamp(32px, 6vw, 56px)));
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0;
+  width: 100vw;
+  height: 100dvh;
   min-height: 0;
 }
 
 .lightboxHeader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  padding: 14px clamp(14px, 2vw, 28px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(4, 4, 5, 0.72);
+  backdrop-filter: blur(14px);
 }
 
 .lightboxMeta {
@@ -218,7 +226,7 @@
 
 .lightboxTitle {
   color: rgba(255, 255, 255, 0.94);
-  font-family: var(--font-serif), Georgia, serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: clamp(24px, 2.2vw, 34px);
   font-weight: 400;
   line-height: 1;
@@ -253,8 +261,8 @@
   height: 100%;
   min-height: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 18px;
+  border: 0;
+  border-radius: 0;
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 36%), #060708;
 }
 
@@ -265,7 +273,7 @@
   width: 100%;
   height: 100%;
   min-height: 0;
-  padding: clamp(18px, 3vw, 42px);
+  padding: var(--lightbox-header-height) 0 0;
 }
 
 .lightboxImage {
@@ -313,38 +321,18 @@
   z-index: 3;
 }
 
-.lightboxThumbs {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  min-height: 0;
-  padding-bottom: 4px;
-  scrollbar-width: thin;
-}
-
-.lightboxThumb {
-  flex: 0 0 120px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.lightboxThumbs::-webkit-scrollbar {
-  height: 6px;
-}
-
-.lightboxThumbs::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-}
-
 .thumbs {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0 2px;
+  scrollbar-width: thin;
+  animation: thumbBarIn 0.5s ease both;
 }
 
 .thumb {
   position: relative;
+  flex: 0 0 clamp(118px, 13vw, 180px);
   overflow: hidden;
   aspect-ratio: 16 / 10;
   border: 0;
@@ -354,6 +342,15 @@
   transition:
     transform var(--transition),
     box-shadow var(--transition);
+}
+
+.thumbs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.thumbs::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
 }
 
 .thumb::after {
@@ -394,13 +391,29 @@
   transform: scale(1.03);
 }
 
+@keyframes thumbBarIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 720px) {
   .mainTrigger {
     padding: 10px 14px 14px;
   }
 
-  .thumbs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .image {
+    max-height: min(60vh, 560px);
+  }
+
+  .thumb {
+    flex-basis: 112px;
   }
 
   .navButton {
@@ -417,12 +430,11 @@
   }
 
   .lightboxInner {
-    gap: 12px;
-    height: calc(100dvh - 24px);
+    height: 100dvh;
   }
 
   .lightboxViewport {
-    padding: 14px 12px 18px;
+    padding: var(--lightbox-header-height) 0 0;
   }
 
   .lightboxHeader {

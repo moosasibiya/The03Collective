@@ -73,11 +73,13 @@ export default function VehicleDetailScreen({
         <EnquiryPanel vehicle={vehicle} />
       </div>
 
-      <section className={styles.relatedBand}>
-        <div className="container">
-          <RelatedVehicles vehicles={relatedVehicles} />
-        </div>
-      </section>
+      {relatedVehicles.length ? (
+        <section className={styles.relatedBand}>
+          <div className="container">
+            <RelatedVehicles vehicles={relatedVehicles} />
+          </div>
+        </section>
+      ) : null}
     </>
   )
 }

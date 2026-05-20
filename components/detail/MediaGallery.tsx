@@ -253,41 +253,6 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
                   ) : null}
                 </div>
 
-                {hasMultiple ? (
-                  <div className={styles.lightboxThumbs}>
-                    {gallery.map((item, index) => (
-                      <button
-                        className={cn(
-                          styles.thumb,
-                          styles.lightboxThumb,
-                          index === activeIndex && styles.active
-                        )}
-                        key={`${vehicle._id}-lightbox-${index}`}
-                        onClick={() => setActiveIndex(index)}
-                        type="button"
-                      >
-                        {item.asset.url ? (
-                          <Image
-                            alt={item.alt || `${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                            className={styles.thumbImage}
-                            fill
-                            sizes="120px"
-                            src={item.asset.url}
-                          />
-                        ) : (
-                          <div
-                            className={styles.thumbVisual}
-                            style={{
-                              background: getVehicleThemeStyle(
-                                `${vehicle.slug.current}-lightbox-thumb-${index}`
-                              ),
-                            }}
-                          />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                ) : null}
               </div>
             </div>,
             document.body

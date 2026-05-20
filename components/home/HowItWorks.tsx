@@ -15,7 +15,7 @@ export default function HowItWorks() {
           </h2>
         </RevealWrapper>
 
-        <div className="stepsGrid">
+        <div className={`stepsGrid ${styles.steps}`}>
           <div className="stepsConnector" />
           {PROCESS_STEPS.map((step, index) => (
             <RevealWrapper className="stepCard" delay={index * 90} key={step.title}>
