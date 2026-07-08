@@ -64,7 +64,6 @@ export default function ContactScreen({ initialMessage, initialType }: ContactSc
                   <span className={styles.hint}>Viewings by appointment</span>
                 </div>
               </div>
-
             </RevealWrapper>
 
             <RevealWrapper delay={120}>

@@ -331,7 +331,12 @@
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.08) 45%, rgba(0, 0, 0, 0.66) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.01) 0%,
+      rgba(0, 0, 0, 0.08) 45%,
+      rgba(0, 0, 0, 0.66) 100%
+    ),
     linear-gradient(90deg, rgba(0, 0, 0, 0.14), transparent 58%);
   opacity: 0.74;
   transition:
@@ -405,7 +410,12 @@
 .vehicleCardButton:focus-visible .vehicleCardShade {
   background:
     radial-gradient(circle at 50% 50%, rgba(215, 193, 143, 0.12), transparent 34%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.06) 44%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.01) 0%,
+      rgba(0, 0, 0, 0.06) 44%,
+      rgba(0, 0, 0, 0.62) 100%
+    ),
     linear-gradient(90deg, rgba(0, 0, 0, 0.12), transparent 58%);
   opacity: 0.82;
 }
@@ -444,8 +454,7 @@
   padding: clamp(16px, 1.8vw, 24px);
   border: 1px solid rgba(255, 255, 255, 0.16);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)),
-    #050505;
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012)), #050505;
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.72);
 }
 

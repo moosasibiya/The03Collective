@@ -37,8 +37,8 @@ export default function AboutScreen() {
                   <strong>Trust</strong> - every buyer and seller gets a clear, direct process.
                 </p>
                 <p className={styles.body}>
-                  We are based in Johannesburg with a national reach. Our buyers are considered,
-                  our sellers are selective, and our standard stays consistent from the first
+                  We are based in Johannesburg with a national reach. Our buyers are considered, our
+                  sellers are selective, and our standard stays consistent from the first
                   conversation to the final handover.
                 </p>
                 <dl className={styles.metrics} aria-label="About The 03 Collective">

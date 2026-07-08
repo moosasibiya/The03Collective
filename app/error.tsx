@@ -12,7 +12,7 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     Sentry.captureException(error)
-  }, [error]) 
+  }, [error])
 
   return (
     <main style={{ padding: '140px 40px', minHeight: '60vh' }}>

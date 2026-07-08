@@ -403,10 +403,8 @@ main {
 .formSelect:hover {
   border-color: rgba(var(--accent-rgb), 0.34);
   background:
-    linear-gradient(45deg, transparent 50%, #ffffff 50%) calc(100% - 22px) 50% / 7px 7px
-      no-repeat,
-    linear-gradient(135deg, #ffffff 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px
-      no-repeat,
+    linear-gradient(45deg, transparent 50%, #ffffff 50%) calc(100% - 22px) 50% / 7px 7px no-repeat,
+    linear-gradient(135deg, #ffffff 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px no-repeat,
     linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
     #17191d;
 }
@@ -433,10 +431,8 @@ main {
   border-color: rgba(var(--accent-rgb), 0.45);
   box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
   background:
-    linear-gradient(45deg, transparent 50%, #ffffff 50%) calc(100% - 22px) 50% / 7px 7px
-      no-repeat,
-    linear-gradient(135deg, #ffffff 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px
-      no-repeat,
+    linear-gradient(45deg, transparent 50%, #ffffff 50%) calc(100% - 22px) 50% / 7px 7px no-repeat,
+    linear-gradient(135deg, #ffffff 50%, transparent 50%) calc(100% - 17px) 50% / 7px 7px no-repeat,
     linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035)),
     #17191d;
 }

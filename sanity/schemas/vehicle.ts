@@ -32,7 +32,8 @@ export const vehicle = defineType({
       title: 'Listing Title',
       type: 'string',
       group: 'basic',
-      description: 'Internal listing title shown in Studio. Public pages still use make, model, and trim.',
+      description:
+        'Internal listing title shown in Studio. Public pages still use make, model, and trim.',
       validation: (rule) =>
         rule.custom((value, context) => {
           const status = String(context.document?.status ?? '')
@@ -78,16 +79,7 @@ export const vehicle = defineType({
       type: 'string',
       group: 'basic',
       options: {
-        list: [
-          'Coupe',
-          'Convertible',
-          'Hatchback',
-          'Sedan',
-          'SUV',
-          'Bakkie',
-          'Wagon',
-          'Van',
-        ],
+        list: ['Coupe', 'Convertible', 'Hatchback', 'Sedan', 'SUV', 'Bakkie', 'Wagon', 'Van'],
       },
     }),
     defineField({
@@ -97,7 +89,8 @@ export const vehicle = defineType({
       group: 'photos',
       options: { hotspot: true },
       fields: imageFields,
-      description: 'Preferred Studio thumbnail and listing hero image. Existing gallery images still work.',
+      description:
+        'Preferred Studio thumbnail and listing hero image. Existing gallery images still work.',
     }),
     defineField({
       name: 'images',
@@ -185,7 +178,8 @@ export const vehicle = defineType({
       type: 'text',
       group: 'marketingCopy',
       rows: 3,
-      validation: (rule) => rule.max(180).warning('Keep the short description under 180 characters.'),
+      validation: (rule) =>
+        rule.max(180).warning('Keep the short description under 180 characters.'),
     }),
     defineField({
       name: 'description',
@@ -212,7 +206,8 @@ export const vehicle = defineType({
       title: 'SEO Title',
       type: 'string',
       group: 'seo',
-      validation: (rule) => rule.max(60).warning('SEO titles usually display best under 60 characters.'),
+      validation: (rule) =>
+        rule.max(60).warning('SEO titles usually display best under 60 characters.'),
     }),
     defineField({
       name: 'seoDescription',
@@ -278,7 +273,8 @@ export const vehicle = defineType({
     },
     prepare({ title, make, model, trim, year, price, mileage, status, mainImage, galleryImage }) {
       const displayTitle = title || [year, make, model, trim].filter(Boolean).join(' ')
-      const formattedPrice = typeof price === 'number' ? `R${price.toLocaleString('en-ZA')}` : 'No price'
+      const formattedPrice =
+        typeof price === 'number' ? `R${price.toLocaleString('en-ZA')}` : 'No price'
       const formattedMileage =
         typeof mileage === 'number' ? `${mileage.toLocaleString('en-ZA')} km` : 'No mileage'
       const statusLabel = statusLabels[String(status)] ?? 'No status'

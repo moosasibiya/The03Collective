@@ -23,7 +23,13 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Available Vehicles')
                 .schemaType('vehicle')
-                .child(vehicleList(S, 'Available Vehicles', '_type == "vehicle" && status == "available"')),
+                .child(
+                  vehicleList(
+                    S,
+                    'Available Vehicles',
+                    '_type == "vehicle" && status == "available"'
+                  )
+                ),
               S.listItem()
                 .title('Sold Vehicles')
                 .schemaType('vehicle')
@@ -31,8 +37,10 @@ export const structure: StructureResolver = (S) =>
               S.listItem()
                 .title('Featured Vehicles')
                 .schemaType('vehicle')
-                .child(vehicleList(S, 'Featured Vehicles', '_type == "vehicle" && featured == true')),
-            ]),
+                .child(
+                  vehicleList(S, 'Featured Vehicles', '_type == "vehicle" && featured == true')
+                ),
+            ])
         ),
       S.listItem()
         .title('Marketing')
@@ -44,6 +52,6 @@ export const structure: StructureResolver = (S) =>
                 .title('Client Testimonials')
                 .schemaType('testimonial')
                 .child(S.documentTypeList('testimonial').title('Client Testimonials')),
-            ]),
+            ])
         ),
     ])

@@ -252,7 +252,6 @@ export default function MediaGallery({ vehicle }: MediaGalleryProps) {
                     </>
                   ) : null}
                 </div>
-
               </div>
             </div>,
             document.body

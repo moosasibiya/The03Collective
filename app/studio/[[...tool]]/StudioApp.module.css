@@ -14,8 +14,7 @@
 .studioShell :global([data-ui='Navbar']) {
   border-bottom: 1px solid var(--studio-line);
   background:
-    linear-gradient(90deg, rgba(216, 184, 106, 0.08), transparent 34%),
-    rgba(10, 10, 11, 0.96);
+    linear-gradient(90deg, rgba(216, 184, 106, 0.08), transparent 34%), rgba(10, 10, 11, 0.96);
   box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
 }
 

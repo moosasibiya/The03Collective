@@ -45,7 +45,7 @@ try {
 } catch (error) {
   if (error.statusCode === 403) {
     console.error(
-      'Sanity rejected the delete. Add a write-capable token as SANITY_API_WRITE_TOKEN and run this script again.',
+      'Sanity rejected the delete. Add a write-capable token as SANITY_API_WRITE_TOKEN and run this script again.'
     )
     process.exit(1)
   }

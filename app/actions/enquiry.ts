@@ -66,7 +66,8 @@ export async function submitEnquiry(
 
     try {
       const resend = getResend()
-      const from = process.env.RESEND_FROM_EMAIL || 'The 03 Collective <hello@the03collective.co.za>'
+      const from =
+        process.env.RESEND_FROM_EMAIL || 'The 03 Collective <hello@the03collective.co.za>'
 
       await resend.emails.send({
         from,
