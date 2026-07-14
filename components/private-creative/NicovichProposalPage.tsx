@@ -54,7 +54,7 @@ const createMoreGallery = ({
 
 const heroImage = {
   src: '/images/nicovich/audi-r8/dsc04800-enhanced-nr-01.jpg',
-  alt: 'Audi R8 front view in a dark cinematic luxury setting for NICOVICH',
+    alt: 'Audi R8 front view in a dark cinematic luxury setting',
 }
 
 const baseVehicleGalleries: VehicleGallery[] = [
@@ -161,7 +161,7 @@ const baseVehicleGalleries: VehicleGallery[] = [
     folder: 'SClass',
     cover: {
       src: '/images/nicovich/sclass/untitled-design-4-14.jpg',
-      alt: 'Black Mercedes-Benz S-Class front profile with NICOVICH plate',
+    alt: 'Black Mercedes-Benz S-Class front profile',
     },
     images: [
       {
@@ -218,7 +218,7 @@ const baseVehicleGalleries: VehicleGallery[] = [
       },
       {
         src: '/images/nicovich/sclass/untitled-design-4-14.jpg',
-        alt: 'Black Mercedes-Benz S-Class front profile with NICOVICH plate',
+      alt: 'Black Mercedes-Benz S-Class front profile',
       },
       {
         src: '/images/nicovich/sclass/untitled-design-15.jpg',
@@ -649,7 +649,7 @@ export default function NicovichProposalPage() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.topBar} aria-label="Private page header">
+      <header className={styles.topBar} aria-label="Portfolio page header">
         <a className={styles.mark} href="#top" aria-label="Moosa Sibiya">
           MS
         </a>
@@ -685,9 +685,9 @@ export default function NicovichProposalPage() {
 
           <div className={styles.heroInner}>
             <RevealWrapper className={styles.heroCopy}>
-              <p className={styles.microLabel}>Private growth proposal</p>
+              <p className={styles.microLabel}>Automotive portfolio</p>
               <h1 className={styles.heroTitle} id="hero-title">
-                NICOVICH.
+                MOOSA SIBIYA.
                 <br />
                 Unmissable.
               </h1>
@@ -905,7 +905,7 @@ export default function NicovichProposalPage() {
           <div className={styles.container}>
             <RevealWrapper className={styles.finalInner}>
               <h2 id="contact-title">
-                NICOVICH already has the cars. Now the content can make the market feel it.
+                Great cars have the presence. The right content makes the market feel it.
               </h2>
             </RevealWrapper>
           </div>
