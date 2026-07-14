@@ -1,0 +1,132 @@
+.breadcrumbBar {
+  margin-top: 76px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumb a,
+.current {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.breadcrumb a {
+  color: rgba(17, 17, 17, 0.82);
+}
+
+.breadcrumb span {
+  color: rgba(17, 17, 17, 0.58);
+}
+
+.current {
+  color: #111111;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.8fr);
+  gap: 40px;
+  padding-top: 44px;
+}
+
+.content {
+  min-width: 0;
+}
+
+.label {
+  margin-bottom: 14px;
+  font-size: clamp(14px, 1.3vw, 18px);
+  letter-spacing: 0.24em;
+}
+
+.title {
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 0.98;
+}
+
+.subtitle {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  margin-bottom: 18px;
+  color: var(--text);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.section :global(.richText) {
+  font-size: clamp(17px, 1.35vw, 20px);
+  line-height: 1.9;
+}
+
+.relatedBand {
+  margin-top: 88px;
+  padding: 72px 0 96px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  background:
+    radial-gradient(circle at top, rgba(var(--accent-rgb), 0.05), transparent 34%),
+    linear-gradient(180deg, var(--light-bg-3) 0%, var(--light-bg) 100%);
+  color: var(--light-text);
+}
+
+@media (max-width: 980px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .breadcrumbBar {
+    margin-top: 72px;
+    padding: 12px 0;
+  }
+
+  .breadcrumb {
+    gap: 8px;
+  }
+
+  .body {
+    gap: 32px;
+    padding-top: 32px;
+  }
+
+  .title {
+    font-size: clamp(36px, 11vw, 48px);
+    line-height: 1.04;
+    overflow-wrap: anywhere;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .section {
+    margin-top: 32px;
+  }
+
+  .relatedBand {
+    margin-top: 64px;
+    padding: 56px 0 72px;
+  }
+}

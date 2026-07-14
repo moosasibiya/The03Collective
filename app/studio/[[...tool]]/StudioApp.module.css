@@ -1,0 +1,76 @@
+.studioShell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(216, 184, 106, 0.09), transparent 26rem),
+    linear-gradient(135deg, #0f0e0c 0%, #111113 48%, #080809 100%);
+  color-scheme: dark;
+  --studio-gold: #d8b86a;
+  --studio-gold-soft: rgba(216, 184, 106, 0.18);
+  --studio-panel: rgba(18, 18, 20, 0.94);
+  --studio-panel-strong: rgba(12, 12, 13, 0.98);
+  --studio-line: rgba(216, 184, 106, 0.16);
+}
+
+.studioShell :global([data-ui='Navbar']) {
+  border-bottom: 1px solid var(--studio-line);
+  background:
+    linear-gradient(90deg, rgba(216, 184, 106, 0.08), transparent 34%), rgba(10, 10, 11, 0.96);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
+}
+
+.studioShell :global([data-ui='Pane']) {
+  border-color: var(--studio-line);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(216, 184, 106, 0.045), transparent 18rem),
+    var(--studio-panel);
+}
+
+.studioShell :global([data-ui='Pane']:first-of-type) {
+  background:
+    linear-gradient(180deg, rgba(216, 184, 106, 0.065), transparent 20rem),
+    var(--studio-panel-strong);
+}
+
+.studioShell :global([data-ui='PaneHeader']) {
+  border-bottom: 1px solid var(--studio-line);
+  background: rgba(9, 9, 10, 0.72);
+  backdrop-filter: blur(14px);
+}
+
+.studioShell :global([data-ui='Card'][data-selected='true']),
+.studioShell :global([data-ui='Card'][aria-selected='true']) {
+  background: linear-gradient(135deg, rgba(216, 184, 106, 0.28), rgba(130, 102, 48, 0.22));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 235, 184, 0.28),
+    0 12px 32px rgba(0, 0, 0, 0.24);
+}
+
+.studioShell :global([data-ui='Card'][role='button']:hover),
+.studioShell :global([data-ui='Card'][role='listitem']:hover) {
+  background: rgba(216, 184, 106, 0.1);
+}
+
+.studioShell :global([data-ui='Button'][data-tone='primary']) {
+  background: linear-gradient(135deg, #d8b86a, #9c7a32);
+  color: #11100d;
+}
+
+.studioShell :global([data-ui='TextInput']),
+.studioShell :global([data-ui='TextArea']),
+.studioShell :global([data-ui='Select']) {
+  border-color: rgba(216, 184, 106, 0.2);
+  background: rgba(5, 5, 6, 0.34);
+}
+
+.studioShell :global([data-ui='Tab'][aria-selected='true']) {
+  color: var(--studio-gold);
+}
+
+.studioShell :global([data-ui='MenuButton'][aria-expanded='true']),
+.studioShell :global([data-ui='MenuButton']:hover) {
+  background: var(--studio-gold-soft);
+}
+
+.studioShell :global([data-ui='Avatar']) {
+  box-shadow: 0 0 0 2px rgba(216, 184, 106, 0.22);
+}

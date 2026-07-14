@@ -10,10 +10,5 @@ export default defineConfig([
       'prefer-const': 'error',
     },
   },
-  globalIgnores([
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-  ]),
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
 ])

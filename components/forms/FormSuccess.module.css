@@ -1,0 +1,49 @@
+.success {
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  text-align: center;
+}
+
+.compact {
+  min-height: 240px;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.18), transparent 72%);
+  color: var(--accent);
+}
+
+.check svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+}
+
+.success h3 {
+  margin-top: 24px;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 34px;
+  font-weight: 300;
+}
+
+.success p {
+  max-width: 360px;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.button {
+  margin-top: 24px;
+}

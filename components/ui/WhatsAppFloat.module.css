@@ -1,0 +1,64 @@
+.float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #1d7449, var(--wa));
+  color: #fff;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.36);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.44);
+}
+
+.float svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(10, 10, 11, 0.92);
+  color: var(--text);
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.float:hover .tooltip {
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .tooltip {
+    display: none;
+  }
+
+  .float {
+    right: 16px;
+    bottom: 16px;
+    width: 54px;
+    height: 54px;
+  }
+}

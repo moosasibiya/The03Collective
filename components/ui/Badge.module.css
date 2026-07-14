@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.available {
+  background: rgba(61, 107, 95, 0.25);
+  color: var(--available-text);
+  border-color: rgba(61, 107, 95, 0.5);
+}
+
+.reserved {
+  background: rgba(139, 105, 20, 0.25);
+  color: #d4a843;
+  border-color: rgba(139, 105, 20, 0.5);
+}
+
+.comingSoon,
+.hidden {
+  background: rgba(139, 105, 20, 0.25);
+  color: #d4a843;
+  border-color: rgba(139, 105, 20, 0.5);
+}
+
+.sold {
+  background: rgba(155, 35, 53, 0.2);
+  color: #e05a6e;
+  border-color: rgba(155, 35, 53, 0.4);
+}

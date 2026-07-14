@@ -1,7 +1,1 @@
-export {
-  getCardImage,
-  getHeroImage,
-  getOgImage,
-  getThumbImage,
-  urlFor,
-} from '@/sanity/lib/image'
+export { getCardImage, getHeroImage, getOgImage, getThumbImage, urlFor } from '@/sanity/lib/image'

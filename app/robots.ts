@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/site-config'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,9 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/studio'],
+        disallow: ['/studio/', '/api/', '/proposal/'],
       },
     ],
-    sitemap: 'https://www.the03collective.co.za/sitemap.xml',
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

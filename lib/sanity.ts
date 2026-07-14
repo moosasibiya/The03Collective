@@ -1,1 +1,1 @@
-export { getSanityClient } from '@/sanity/lib/client'
+export { getSanityClient, sanityClient } from '@/sanity/lib/client'

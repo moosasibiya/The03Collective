@@ -1,57 +1,38 @@
 import type { MetadataRoute } from 'next'
-import { getSanityClient } from '@/sanity/lib/client'
+import * as Sentry from '@sentry/nextjs'
+import { SITE_URL } from '@/lib/site-config'
+import { sanityClient } from '@/sanity/lib/client'
 import { ALL_VEHICLE_SLUGS_QUERY } from '@/sanity/lib/queries'
 
-const BASE_URL = 'https://www.the03collective.co.za'
+export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseRoutes: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/inventory`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/sell`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-  ]
+  let vehicleSlugs: { slug: string }[] = []
 
-  const sanityClient = getSanityClient()
-
-  if (!sanityClient) {
-    return baseRoutes
+  try {
+    if (sanityClient) {
+      vehicleSlugs = await sanityClient.fetch<{ slug: string }[]>(ALL_VEHICLE_SLUGS_QUERY)
+    }
+  } catch (error) {
+    Sentry.captureException(error)
+    vehicleSlugs = []
   }
 
-  const slugs = await sanityClient.fetch<{ slug: string }[]>(ALL_VEHICLE_SLUGS_QUERY)
+  const vehicleUrls: MetadataRoute.Sitemap = vehicleSlugs
+    .filter(({ slug }) => Boolean(slug))
+    .map(({ slug }) => ({
+      url: `${SITE_URL}/inventory/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    }))
 
-  const vehicleUrls: MetadataRoute.Sitemap = slugs.map(({ slug }) => ({
-    url: `${BASE_URL}/inventory/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
-
-  return [...baseRoutes, ...vehicleUrls]
+  return [
+    { url: SITE_URL, priority: 1.0, changeFrequency: 'daily' },
+    { url: `${SITE_URL}/inventory`, priority: 0.9, changeFrequency: 'daily' },
+    { url: `${SITE_URL}/sell`, priority: 0.7, changeFrequency: 'monthly' },
+    { url: `${SITE_URL}/about`, priority: 0.6, changeFrequency: 'monthly' },
+    { url: `${SITE_URL}/contact`, priority: 0.6, changeFrequency: 'monthly' },
+    ...vehicleUrls,
+  ]
 }
